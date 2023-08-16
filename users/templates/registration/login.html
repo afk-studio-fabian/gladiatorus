@@ -1,0 +1,23 @@
+<!--hovedside/templates/registration/login.html-->
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    
+    <div class="form-header">
+        <h2>Login</h2>
+    </div>
+
+    <form method="POST" class="default-form">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Login" class="btn btn-outline-success" >
+    </form>
+    <div class="form-footer">
+        <a class="btn btn-outline-dark" href="{% url 'users:dashboard' %}"><div>Back to dashboard</div></a>
+        <a class="btn btn-outline-warning" href="{% url 'password_reset' %}"     ><div>Reset password</div></a>
+        <a class="btn btn-outline-primary" href="{% url 'users:register' %}" ><div>Register</div></a>
+    </div>
+</div>
+{% endblock content %}

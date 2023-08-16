@@ -1,0 +1,45 @@
+<!--hovedisde/templates/users/register.html-->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-container">
+    
+    <div class="form-header">
+        <h2>Register</h2>
+    </div>
+
+    <form method="post" class="form default-form">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Register" class="btn btn-outline-success">
+    </form>
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+    <div class="form-footer">
+        <a class="btn btn-outline-primary" href="{% url 'login' %}">Back to login</a>
+    </div>
+</div>
+    <style>
+        body{
+            color:white;
+            color: black;
+        }
+        form{
+            display: inline-grid;
+            padding: 15px;
+        }
+    </style>
+{% endblock content %}

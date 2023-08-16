@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class = "container">
+    <div class="formContainer">
+        <form method="POST" enctype="multipart/form-data" class="default-form">
+            {% csrf_token %}
+            <h1> Create Roster </h1>
+
+            {{ form|crispy }}
+
+            <button class="btn btn-outline-info publish-ad-btn">
+                Save Team
+            </button>
+        </form>
+        {{ form.media.js }}
+    </div>
+    {% include "modules/_findPlayerModule.html" %}
+    {% if previous_page %}
+        <a class="btn btn-outline-info" href="{{previous_page}}">Back</a>
+    {% endif %}
+</div>
+
+
+{% endblock content %}

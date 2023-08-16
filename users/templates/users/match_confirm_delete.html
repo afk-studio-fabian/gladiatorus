@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<head>
+</head>
+<div class = "container">
+    
+        <form method="POST" enctype="multipart/form-data" class="default-form">
+            {% csrf_token %}
+            <h1> Are you sure you want to delete the match? </h1>
+            <br>
+            <h4>{{object.team1.name}} - {{object.team2.name}}</h4>
+            <br>
+            <h4>{{object.liga.name}}</h4>
+            <br>
+            <h4>{{object.time}}</h4>
+        
+
+            <button class="btn btn-outline-danger publish-ad-btn" type="submit">
+                DELETE Match
+            </button>
+            <a class="btn btn-outline-secondary publish-ad-btn" href="{% url 'streaming:viewControlboard' match_id=object.id %}">
+                Cancel
+            </a>
+            {% if previous_page %}
+                <a class="btn btn-outline-info" href="{{previous_page}}">Back</a>
+            {% endif %}
+        </form>
+    
+</div>
+
+{% endblock content %}

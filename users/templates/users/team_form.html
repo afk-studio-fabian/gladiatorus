@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class = "container">
+    
+        <form method="POST" enctype="multipart/form-data" class="default-form">
+            {% csrf_token %}
+            <h1> Create Team </h1>
+
+            {{ form|crispy }}
+
+            <button class="btn btn-outline-info publish-ad-btn">
+                Save Team
+            </button>
+        </form>
+
+        <div class="rosters" style="color:white;">
+            {% if object.leagueOfLegendsRosters %}
+                {% if object.leagueOfLegendsRosters.all.0 %}
+                {% comment %} {{object.leagueOfLegendsRosters.all}} {% endcomment %}
+                    {% for rosters in object.leagueOfLegendsRosters.all %}
+                    <a class="btn btn-outline-info" href="{% url 'streaming:update-LOL-RosterView' pk=object.leagueOfLegendsRosters.all.0.id %}">Edit {{roster.name}}</a>
+                    {{roster.id}}
+                    
+                    {% endfor %}
+                    {% comment %} <a class="btn btn-outline-info" href="{% url 'streaming:update-LOL-RosterView' pk=object.leagueOfLegendsRosters.all.0.id %}">Edit {{roster.name}}</a> {% endcomment %}
+                {% else %}
+                    <a class="btn btn-outline-info" href="{% url 'streaming:createLeagueOfLegendsRoster' %}">Add Roster</a>
+                {% endif %}
+                <a class="btn btn-outline-info" href="{% url 'streaming:createLeagueOfLegendsRoster' %}">Add Another Roster</a>
+            {% else %}
+                <a class="btn btn-outline-info" href="{% url 'streaming:createLeagueOfLegendsRoster' %}">Add Roster</a>
+            {% endif %}
+            {% if previous_page %}
+                <a class="btn btn-outline-info" href="{{previous_page}}">Back</a>
+            {% endif %}
+        </div>
+
+        
+    
+</div>
+
+{% endblock content %}
