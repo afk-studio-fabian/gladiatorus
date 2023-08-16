@@ -112,7 +112,7 @@ GitHub.sublime-settings
 */*/migrations/*
 
 # Ignore media uploaded by users
-media/uploads/
+media/user-uploads/
 
 # Ignore local settings
 local_settings.py
