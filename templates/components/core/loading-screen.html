@@ -1,0 +1,47 @@
+{% load static %}
+<style>
+    .loading-screen-container{
+        width: 100vw;
+        height: 100vh;
+        position:absolute;
+
+        display: flex;
+
+        justify-content: center;
+        align-content: center;
+        z-index: 100;
+        align-items: center;
+        background-color: white;
+        opacity: 1;
+        animation: load-intro 0.5s forwards 0.25s;
+
+
+        user-select: none;       /* standard syntax */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE/Edge */
+
+    pointer-events: none;
+    }
+
+    .loading-screen-container iframe{
+        width: 400px;
+        height: 400px;
+    }
+    @keyframes load-intro{
+        0%{
+            opacity: 1;
+        }
+        50%{
+            opacity: 1;
+        }
+        100%{
+            opacity: 0;
+        }
+    }
+</style>
+<div class="loading-screen-container">
+    
+    <iframe src="{% static 'gladiatorus-base/img/logo/V3_round_Transparent-animated.svg' %}" frameborder="0"></iframe>
+
+</div>

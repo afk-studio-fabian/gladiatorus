@@ -33,13 +33,14 @@ CSRF_COOKIE_SECURE = True
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', SERVER_HOST, SERVER_IP]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', SERVER_HOST, SERVER_IP, 'champions.au19.tech']
 
-CSRF_TRUSTED_ORIGINS = ['https://localhost', 'https://127.0.0.1', SERVER_HOST, "https://"+SERVER_IP]
+CSRF_TRUSTED_ORIGINS = ['https://localhost', 'https://127.0.0.1', SERVER_HOST, "https://"+SERVER_IP, 'https://champions.au19.tech']
 CORS_ORIGIN_ALLOW_ALL = True
 
 #LOGOUT_REDIRECT_URL = 'web_app:welcome_view'
 #LOGIN_REDIRECT_URL = "web_app:welcome_view"
+#
 
 # Application definition
 
@@ -51,6 +52,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    ###
+    'core',
+    'gladiatori',
+    'patronus',
+    'dominus',
+    'magistrate',
+
 ]
 
 MIDDLEWARE = [
@@ -61,6 +70,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'django.contrib.staticfiles.handlers.StaticFilesHandler',
+    #'django.contrib.staticfiles',
 ]
 
 ROOT_URLCONF = 'gladiatorus_server.urls'
@@ -68,7 +79,7 @@ ROOT_URLCONF = 'gladiatorus_server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,10 +141,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+#--- STATIC_ROOT --- is used for collect static-for when we move and transfer the static files of the server.
+STATIC_ROOT = os.path.join(BASE_DIR, "collected_static")
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 JSON_ROOT = os.path.join(BASE_DIR, "jsonFiles")
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
