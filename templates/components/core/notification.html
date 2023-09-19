@@ -1,0 +1,15 @@
+{% load static %}
+<div class="gladiatorus-web-standard-notification">
+    <div class="gladiatorus-notification-icon-container">
+        <img class="gladiatorus-notification-icon-img" src="{% static 'gladiatorus-base/img/logo/V3_round_Transparent.svg' %}" alt="Gladiatorus Notifcation Icon">
+    </div>
+    <div class="gladiatorus-notification-content">
+        <div class="gladiatorus-notification-info-container">
+            Notifcation
+        </div>
+        <div class="gladiatorus-notification-logo-container">
+            <a class="btn btn-outline-success" href="{% url "users:register" %}">Sign up!</a>
+        </div>
+        <button class="btn btn-outline-danger" onclick="close-notification">Close</button>
+    </div>
+</div> 

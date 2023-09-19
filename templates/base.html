@@ -12,9 +12,10 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static 'gladiatorus-base/bootstrap-5.0.2-dist/css/bootstrap.min.css' %}">
-        
+        <link rel="stylesheet" href="{% static 'gladiatorus-base/css/base.css' %}">
+        <link rel="stylesheet" href="{% static 'core/css/components/main-menu.css' %}">
         <script src="{% static 'gladiatorus-base/bootstrap-5.0.2-dist/js/bootstrap.min.js' %}"></script>
-
+        <script src="{% static 'gladiatorus-base/js/main-menu.js' %}"></script>
         
     </head>
     <body>
@@ -24,10 +25,12 @@
         {% include "components/core/loading-screen.html" %}
         {% include "components/main-menu.html" %}
         {% include "components/main-navbar.html" %}
+        <div class="gladiatorus-content-container">
         {% block content %}
         
         {% endblock content %}
-
+        </div>
+        {% include "components/core/main-footer.html" %}
         <script src="" async defer></script>
     </body>
 </html>

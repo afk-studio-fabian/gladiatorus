@@ -1,0 +1,101 @@
+:root{
+    --gladiatorus-dark-grey-1: #101010;
+    --gladiatorus-medium-grey-1: #171717;
+    --gladiatorus-medium-grey-weak: #1b1b1b;
+}
+body{
+    overflow-x: hidden;
+
+    /* display: flex; */
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+
+    text-align: -webkit-center;
+}
+
+.gladiatorus-content-container{
+    min-height: 100vh;
+    width: 60%;
+}
+
+.gladiatorus-main-footer{
+    background-color: var(--gladiatorus-dark-grey-1);
+    color: white;
+    padding-bottom: 150px;
+}
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 800px) {
+    .gladiatorus-content-container{
+        width: 100%;
+    }
+}
+
+
+/* STANDARD WEB COMPONENTS */
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.info-list-container{
+    width: 300px;
+}
+
+/* STANDARD WEB COMPONENTS */
+
+/* NOTIFCATION DESIGN */
+.gladiatorus-web-standard-notification{
+    height: 80px;
+    border-radius: 100px;
+    display: flex;
+    box-shadow: 0px 3px 5px #00000078;
+    align-content: center;
+    align-items: center;
+    contain: content;
+    padding: 5px;
+    /* background-color: #1c1c1c; */
+}
+
+.gladiatorus-notification-icon-container{
+
+}
+
+.gladiatorus-notification-icon-img{
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+}
+
+
+.gladiatorus-notification-content{
+    flex-grow: 1;
+    display: flex;
+    margin-left: 10px;
+    height: 100%;
+    align-items: center;
+    border-left: 4px solid #cdcdcd;
+    padding-left: 10px;
+}
+.gladiatorus-notification-info-container{
+
+}
+.gladiatorus-notification-logo-container{
+
+}
+/* NOTIFCATION DESIGN */

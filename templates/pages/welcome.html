@@ -1,4 +1,58 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
+    {% include "components/core/notification.html" %}
+    <br>
     <h1>Welcome to Gladiatorus!</h1>
+
+
+    <p><i>A new kind of tournament platform! :&#41;  &#60;3 </i></p>
+    <br>
+        <img width="300px" class="dashboard-header-user-icon-img" src="{% static 'gladiatorus-base/img/logo/V3_round_Transparent.svg' %}" alt="Gladiatorus Icon">
+    <br>
+    <br>
+        <p><b>Yeah!</b> Made by and for everyone</p>
+    <br>
+    <br>
+    <h1>Our Platform's Vision</h1>
+
+    <h4>Our goal with this platform is to enable the new generation of:</h4>
+    <div class="info-list-container">
+        <ul>
+            <li>Players</li>
+            <li>Spectators</li>
+            <li>Tournament organizers</li>
+            <li>Sponsors</li>
+            <li>Entertainers</li>
+            <li>...and everyone else involved</li>
+        </ul>
+    </div>
+    <br>
+    <h4>We have set out to accomplish this by creating a fully integrated platform with features such as:</h4>
+    <div class="info-list-container">
+        <ul>
+            <li>Contracts management</li>
+            <li>Economic structures, including salaries</li>
+            <li>Automatic video production and distribution</li>
+            <li>Interactive overlays</li>
+            <li>Chat and communication tools</li>
+            <li>...and much more</li>
+        </ul>
+    </div>
+
+    <p>All of these are integrated into a highly efficient system designed for and by the users.</p>
+
+    <br>
+    <br>
+    
+    <p>   
+        
+    </p>
+    <br>
+    <p>Anyways, we're happy to have you around and hope you find this service usefull</p>
+    <br>
+    <p> want to know more? click this link: </p>
+    {% comment %} <br><p> Her er link til kartet: <a href="{% url 'web_app:welcome_view' %}">Forsiden</a></p> {% endcomment %}
+    <br>
+    <p>The very best of luck: <b>Neo Caesar</b></p>
 {% endblock content %}

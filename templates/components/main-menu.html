@@ -1,5 +1,38 @@
 {% load static %}
-<style></style>
-<div class="gladiatorus-main-menu-container">
+<!--<style>/* USES main-menu.css*/</style>-->
+<div class="gladiatorus-main-menu-container" id="gladiatorus-main-menu-container">
+    <div class="gmm-status-bar" id="gmm-status-bar">
+        <div class="gmm-notification-bar">
+        </div>
+
+        <div class="gmm-header">
+            <h1> Status Bar</h1>
+        </div>
+        
+    </div>
+    <div class="gmm-core" id="gmm-core">
+        <h2> Core</h2>
+    </div>
+    <div class="gmm-orientation" id="gmm-orientation">
+        <h2> Orientation</h2>
+        <div class="orientation-circular-menu">
+            <img src="{% static 'gladiatorus-base/img/Orientation_Menu_Example.png' %}" alt="rotation_temp_image"></img>
+        </div>
+        
+        <div class="orientation-footer-menu">
+            <div class="">
+                <img height="100px" src="{% static 'gladiatorus-base/img/icons/settings_icon.png' %}" alt="Orientation Footer Home"></img>
+            </div>
+            <a href="{% url "core:welcome" %}">
+                <img height="100px" src="{% static 'gladiatorus-base/img/icons/home_200.png' %}" alt="Orientation Footer Home"></img>
+            </a>
+            <div class="">
+                Chat
+            </div>
+        </div>
+    </div>
+    <div class="gmm-navbar-cover" id="gmm-navbar-cover">
+    </div>
 
 </div>
+

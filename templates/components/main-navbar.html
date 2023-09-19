@@ -1,101 +1,12 @@
 {% load static %}
-<style>
-    :root{
-        --gladiatorus-dark-grey-1: #101010;
-        --gladiatorus-medium-grey-1: #171717;
-        --gladiatorus-medium-grey-weak: #1b1b1b;
-    }
-    .gladiatorus-main-navbar-container{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        position: absolute;
-        bottom: 0px;
-        padding: 10px;
-
-        padding: 22px;
-        width: 100vw;
-    }
-    .gladiatorus-main-navbar{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        align-content: center;
-    
-    }
-
-    /* MAIN BUTTON */
-    .gladiatorus-main-navbar-home-button-container{
-        background-color: var(--gladiatorus-dark-grey-1);
-        padding: 7px;
-        border-radius: 100%;
-        position: absolute;
-        
-        z-index: 10000;
-
-    }
-    .gladiatorus-main-navbar-home-button{
-        height: 80px;
-    }
-    .gladiatorus-main-navbar-home-button-img{
-        height: 80px;
-    }
-
-
-    /* Utility line */
-    .main-navbar-utility-line{
-        min-width: 350px;
-        max-width: 90%;
-        background-color: var(--gladiatorus-medium-grey-1);
-        border-radius: 100px;
-        height: 100px;
-
-        height: 70px;
-
-        display: flex;
-        contain: content;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .main-navbar-utility-line section{
-        height: 100%;
-        width: 50%;
-        {% comment %} background-color: #008cff; {% endcomment %}
-        /*flex-grow: 1;*/
-        
-        display: flex;
-        contain: content;
-        
-        justify-content: center;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        justify-content: space-around;
-        align-content: center;
-        align-items: center;
-    }
-    .main-navbar-utility-line spacer{
-        height: 100%;
-        width: 60px;
-    }
-    .utility-line-standard-icon{
-
-    }
-    .utility-line-standard-icon img{
-        width: 50px;
-        height: 50px;
-        object-fit: auto;
-        border-radius: 100%;
-    }
-</style>
+<!--<style>/* USES main-menu.css*/</style>-->
 <div class="gladiatorus-main-navbar-container">
     <div class="gladiatorus-main-navbar">
-        <a href="{% url "core:welcome" %}" class="gladiatorus-main-navbar-home-button-container">
+        <div onclick="toggle_main_menu()" class="gladiatorus-main-navbar-home-button-container">
             <div class="gladiatorus-main-navbar-home-button">
                 <img src="{% static 'gladiatorus-base/img/logo/V3_round_Transparent.png' %}" alt="gladiatorus-home-button" class="gladiatorus-main-navbar-home-button-img">
             </div>
-        </a>
+        </div>
 
         <div class="main-navbar-utility-line">
             <section style="padding-right: 30px">
@@ -116,14 +27,12 @@
                 
 
                 <a href={% url "users:dashboard" %} class="main-navbar-user-container utility-line-standard-icon">
-                    
+
                     {% if user.is_authenticated %}
                         <img src="{{user.profile.profileImage.url}}" alt="user-icon-image">
                     {% else %}
                         <img src="{% static 'gladiatorus-base/img/not-authenticated-user-image.jpg' %}" alt="user-icon-image">
                     {% endif %}
-                    
-                
                 </a>
             </section>
         </div>

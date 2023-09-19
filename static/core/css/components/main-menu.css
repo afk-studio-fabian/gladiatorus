@@ -1,0 +1,317 @@
+:root{
+    --gladiatorus-dark-grey-1: #101010;
+    --gladiatorus-medium-grey-1: #171717;
+    --gladiatorus-medium-grey-weak: #1b1b1b;
+}
+
+
+
+
+
+
+
+/*  ###########
+    MAIN-NAV BAR
+*/
+/* ANIMATION CONTROL */
+
+.gladiatorus-main-navbar-container{animation: load-main-navbar 2s forwards 0.0s;}
+.main-navbar-utility-line{animation: extend-utility-wings 2s forwards 0.0s;}
+
+
+/* ANIMATION CONTROL */
+
+.gladiatorus-main-navbar-container div{
+    transition-duration: 0.333s;
+    transition: opacity 0.444s, transform 0.333s, fill 0.333s;
+    transition: width 0.333s;
+}
+.gladiatorus-main-navbar-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    bottom: 0px;
+    padding: 10px;
+
+    padding: 22px;
+    width: 100vw;
+    z-index: 10000;
+    pointer-events: none;
+}
+/* ENABLING POINTER EVENTS FOR NAV BAR */
+.gladiatorus-main-navbar, .gladiatorus-main-navbar *{
+    pointer-events: auto;
+}
+.gladiatorus-main-navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    
+}
+
+/* MAIN BUTTON */
+.gladiatorus-main-navbar-home-button-container{
+    background-color: var(--gladiatorus-dark-grey-1);
+    padding: 7px;
+    border-radius: 100%;
+    position: absolute;
+    
+    z-index: 10000;
+}
+.gladiatorus-main-navbar-home-button-container:hover{
+    cursor: pointer;
+    background-color: var(--gladiatorus-medium-grey-weak);
+}
+.gladiatorus-main-navbar-home-button{
+    height: 80px;
+    width: 80px;
+}
+.gladiatorus-main-navbar-home-button-img{
+    height: 80px;
+    width: 80px;
+}
+
+
+/* Utility line */
+.main-navbar-utility-line{
+    width: 350px;
+    /* max-width: 90%; */
+    background-color: var(--gladiatorus-medium-grey-1);
+    border-radius: 100px;
+    height: 100px;
+
+    height: 70px;
+
+    display: flex;
+    contain: content;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.main-navbar-utility-line section{
+    height: 100%;
+    width: 50%;
+    /*flex-grow: 1;*/
+    
+    display: flex;
+    contain: content;
+    
+    justify-content: center;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+}
+.main-navbar-utility-line spacer{
+    height: 100%;
+    width: 60px;
+}
+.utility-line-standard-icon{
+
+}
+.utility-line-standard-icon img{
+    width: 50px;
+    height: 50px;
+    object-fit: auto;
+    border-radius: 100%;
+}
+
+@keyframes load-main-navbar {
+    0%{
+        transform: translate(0px, 100px);
+    }
+    25%{
+        transform: translate(0px, 0px);
+    }
+    50%{
+        transform: translate(0px, 0px);
+    }
+    75%{
+        transform: translate(0px, 0px);
+    }
+}
+@keyframes extend-utility-wings {
+    0%{
+        /* width: 0px; */
+        opacity: 0;
+    }
+    25%{
+
+        /* width: 0px; */
+        opacity: 0;
+    }
+
+    75%{
+
+        /* width: 350px; */
+        opacity: 1;
+    }
+}
+
+
+
+/*  
+    MAIN-NAV BAR
+    ############
+*/
+
+
+
+/*  #########
+    MAIN-MENU
+*/
+.gladiatorus-main-menu-container{
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
+    top: 0px;
+    left: 0px;
+    position: fixed;
+    z-index: 9000;
+
+    display: grid;
+    display: none;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    /* background-color: rgba(255, 255, 255, 0.264); */
+}
+
+/****^^ GRID INFO ^^****/
+.gmm-status-bar{
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    
+}
+.gmm-core{
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 5;
+    
+}
+.gmm-orientation{
+    grid-column-start: 2;   /*1*/
+    grid-column-end: 5;     /*6*/
+    grid-row-start: 5;      /*1*/ 
+    grid-row-end: 7;        /*8*/
+    
+}
+.gmm-navbar-cover{
+    grid-column-start: 2;   /*1*/
+    grid-column-end: 5;     /*6*/
+    grid-row-start: 7;      /*1*/ 
+    grid-row-end: 8;        /*8*/
+}
+
+
+@media (max-width: 800px) {
+    .gmm-status-bar{
+        grid-column-start: 1;
+        grid-column-end: 6;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+    
+    .gmm-core{
+        grid-column-start: 1;
+        grid-column-end: 6;
+        grid-row-start: 2;
+        grid-row-end: 5;
+    }
+    
+    .gmm-orientation{
+        grid-column-start: 1;
+        grid-column-end: 6;
+        grid-row-start: 5;  /*1*/
+        grid-row-end: 7;    /*8*/
+    }
+    .gmm-navbar-cover{
+        grid-column-start: 1;   /*1*/
+        grid-column-end: 6;     /*6*/
+        grid-row-start: 7;      /*1*/ 
+        grid-row-end: 8;        /*8*/
+    }
+  }
+
+
+
+/****__ GRID INFO __****/
+.gmm-status-bar, .gmm-core, .gmm-orientation, .gmm-navbar-cover{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    
+
+    flex-wrap: wrap;
+    align-content: flex-start;
+
+    -webkit-backdrop-filter: blur(1px);
+    backdrop-filter: blur(1px);
+    background-color: rgba(255, 255, 255, 0.564);
+    contain: content;
+    transition-duration: 0.3s;
+    transition: opacity 0.2s, transform 0.3s;
+    opacity: 0;
+}
+.gmm-status-bar{
+    z-index: 9055;
+    transform: translateY(-500px);
+}
+.gmm-core{
+    z-index: 9045;
+    transform: translateY(-500px);
+}
+.gmm-orientation{
+    z-index: 9035;
+    transform: translateY(500px);
+    /* background-color: red; */
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+}
+.orientation-circular-menu{
+
+}
+.orientation-circular-menu img{
+    height: 100px;
+}
+
+.orientation-footer-menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.orientation-footer-menu img{
+    height: 50px;
+}
+.orientation-footer-menu div{
+    flex-grow: 1;
+}
+
+.gmm-navbar-cover{
+    z-index: 9025;
+    transform: translateY(500px);
+}
+
+
+
+
+.gmm-notification-bar{
+    width: 100%;
+    height: 20px;
+    background-color: var(--gladiatorus-medium-grey-1);
+
+}
+
+/*  
+    MAIN-MENU
+    #########
+*/
