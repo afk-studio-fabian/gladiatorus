@@ -6,11 +6,16 @@
 {% load static %}
 <html>
     <head>
+        <!-- About the HTML -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{{page_title|default:'Gladiatorus'}}</title>
-        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Metadata for the user -->
+        <title>{{page_title|default:'Gladiatorus'}}</title>
+        <meta name="description" content="{{page_description|default:'Gladiatorus Page'}}">
+        
+        <!-- Page related Pre-loading -->
+        <link rel="icon" href="{% static 'favicon.ico' %}" type="favicon">
         <link rel="stylesheet" href="{% static 'gladiatorus-base/bootstrap-5.0.2-dist/css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'gladiatorus-base/css/base.css' %}">
         <link rel="stylesheet" href="{% static 'core/css/components/main-menu.css' %}">
@@ -22,15 +27,17 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        {% include "components/core/loading-screen.html" %}
+        {% comment %} {% include "components/core/loading-screen.html" %} {% endcomment %}
         {% include "components/main-menu.html" %}
         {% include "components/main-navbar.html" %}
+        {% include "components/core/notification.html" %}
         <div class="gladiatorus-content-container">
         {% block content %}
         
         {% endblock content %}
         </div>
         {% include "components/core/main-footer.html" %}
+        {% include "components/extra-features/background-image.html" %}
         <script src="" async defer></script>
     </body>
 </html>

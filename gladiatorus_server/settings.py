@@ -39,8 +39,9 @@ CSRF_TRUSTED_ORIGINS = ['https://localhost', 'https://127.0.0.1', SERVER_HOST, "
 CORS_ORIGIN_ALLOW_ALL = True
 
 #LOGOUT_REDIRECT_URL = 'web_app:welcome_view'
-#LOGIN_REDIRECT_URL = "web_app:welcome_view"
+LOGIN_REDIRECT_URL = "users:dashboard"
 #
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 # Application definition
 
@@ -52,13 +53,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+
     
+    'friend',
+
+
     ###
     'core',
     'gladiatori',
     'patronus',
     'dominus',
     'magistrate',
+    
 
 ]
 

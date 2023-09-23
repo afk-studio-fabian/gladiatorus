@@ -1,4 +1,5 @@
 {% load static %}
+{% comment %} 
 <div class="gladiatorus-web-standard-notification">
     <div class="gladiatorus-notification-icon-container">
         <img class="gladiatorus-notification-icon-img" src="{% static 'gladiatorus-base/img/logo/V3_round_Transparent.svg' %}" alt="Gladiatorus Notifcation Icon">
@@ -10,6 +11,149 @@
         <div class="gladiatorus-notification-logo-container">
             <a class="btn btn-outline-success" href="{% url "users:register" %}">Sign up!</a>
         </div>
-        <button class="btn btn-outline-danger" onclick="close-notification">Close</button>
+        <div class="gladiatorus-notification-close-notification-container">
+            <button class="btn btn-outline-danger" onclick="close-notification">Close</button>
+        </div>
     </div>
 </div> 
+{% endcomment %}
+
+<div class="notification-spacer"></div>
+<div id="notification-container" class="notification-container"></div>
+<script>
+    let notification_stack = [];
+    let notification_template_object = {
+        "notification_info": [["text", "Notification"]],
+        "notification_logo": [["a", "{% url 'users:register' %}", "Sign up!"]],
+    };
+    
+    
+    //new Notification(type="link", name="Notification", url_name="Sign up", url="{% url 'users:register' %}")
+    function adjustContentPosition() {
+        console.log("this");
+        const notificationContainer = document.getElementById('notification-container');
+        const spacer = document.querySelector('.notification-spacer');
+    
+        if (notificationContainer && spacer) {
+            const height = notificationContainer.offsetHeight;
+            console.log(height);
+            spacer.style.height = `${height}px`;
+            //spacer.style.height = "100px";
+        }
+    }
+    function setNotificationBanner(bannerURL) {
+        // Get all elements with the class 'gladiatorus-notification-content'
+        const contentContainers = document.querySelectorAll('.gladiatorus-notification-content');
+    
+        contentContainers.forEach(container => {
+            // Set the background image style property
+            container.style.backgroundImage = `url('${bannerURL}')`;
+    
+            // Ensure the background covers the whole area and is centered
+            container.style.backgroundSize = 'cover';
+            container.style.backgroundPosition = 'center';
+        });
+    }
+
+    //setNotificationBanner(banner_url);
+
+    {% comment %} function close_notification(notification_id) {
+        let notificationElement = document.getElementById(notification_id);
+        if (notificationElement) {
+            notificationElement.remove();
+        }
+        //setTimeout(adjustContentPosition(), 200);
+    } {% endcomment %}
+    function close_notification(notification_id) {
+        let notificationElement = document.getElementById(notification_id);
+        if (notificationElement) {
+            // Apply close animation
+            notificationElement.style.animation = "notification-close-animation 1s forwards";
+    
+            // Wait for animation to complete, then remove from DOM
+            setTimeout(() => {
+                notificationElement.remove();
+            }, 1000);  // 1000ms or 1s, same as the animation duration
+
+            setTimeout(function(){
+                adjustContentPosition();
+            }, 1000);
+        }
+    }
+    
+    
+    function Notification(type, name, url_name, url, bannerURL = null) {
+        
+        const notificationId = 'notification_' + new Date().getTime();
+        notification_stack.push(notificationId);
+
+        let notificationDiv = document.createElement("div");
+        notificationDiv.className = "gladiatorus-web-standard-notification";
+        notificationDiv.id = notificationId;
+
+        let iconContainer = create_html_element("div", "gladiatorus-notification-icon-container");
+        let iconImg = create_html_element("img", "gladiatorus-notification-icon-img");
+        iconImg.setAttribute("src", "{% static 'gladiatorus-base/img/logo/V3_round_Transparent.svg' %}");
+        iconImg.setAttribute("alt", "Gladiatorus Notification Icon");
+        iconContainer.appendChild(iconImg);
+
+        let contentDiv = document.createElement("div");
+        contentDiv.className = "gladiatorus-notification-content";
+
+        let infoContainer = create_html_element("div", "gladiatorus-notification-info-container");
+        infoContainer.innerText = name;
+        contentDiv.appendChild(infoContainer);
+
+        if (type === "link") {
+            let logoContainer = create_html_element("div", "gladiatorus-notification-logo-container");
+            let logoLink = create_html_element("a", "btn btn-outline-success");
+            logoLink.href = url;
+            logoLink.innerText = url_name;
+            logoContainer.appendChild(logoLink);
+            contentDiv.appendChild(logoContainer);
+        }
+
+        // If a bannerURL is provided, set the background banner for the content container
+        if (bannerURL) {
+            console.log(bannerURL);
+            //const contentContainer = document.querySelector('.gladiatorus-notification-content');
+            if (contentDiv) {
+                contentDiv.style.backgroundImage = `url('${bannerURL}')`;
+                contentDiv.style.backgroundSize = 'cover';
+                contentDiv.style.backgroundPosition = 'center';
+            }
+        }
+
+        let closeContainer = create_html_element("div", "gladiatorus-notification-close-notification-container");
+        //let closeButton = create_html_element("button", "close-button btn btn-outline-danger");
+        let closeButton = create_html_element("p", "");
+        closeContainer.onclick = function() {
+            close_notification(notificationId);
+        };
+        closeButton.onclick = function() {
+            close_notification(notificationId);
+        };
+        closeButton.innerText = "Close";
+        closeContainer.appendChild(closeButton);
+        contentDiv.appendChild(closeContainer);
+
+        notificationDiv.appendChild(iconContainer);
+        notificationDiv.appendChild(contentDiv);
+
+        // Append to the desired container on the page
+        document.getElementById("notification-container").appendChild(notificationDiv);
+        adjustContentPosition();
+    }
+
+
+    function create_html_element(tagName, className = "") {
+        let elem = document.createElement(tagName);
+        if (className) {
+            elem.className = className;
+        }
+        return elem;
+    }
+    window.addEventListener('load', adjustContentPosition);
+    //generate_notification_from_notification_template();
+    
+</script>

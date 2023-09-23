@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    {% include "components/core/notification.html" %}
+    
     <br>
     <h1>Welcome to Gladiatorus!</h1>
 
 
     <p><i>A new kind of tournament platform! :&#41;  &#60;3 </i></p>
     <br>
-        <img width="300px" class="dashboard-header-user-icon-img" src="{% static 'gladiatorus-base/img/logo/V3_round_Transparent.svg' %}" alt="Gladiatorus Icon">
+        <img style="border-radius: 100%;" width="300px" class="dashboard-header-user-icon-img" src="{% static 'gladiatorus-base/img/logo/V3_round_Transparent.svg' %}" alt="Gladiatorus Icon">
     <br>
     <br>
-        <p><b>Yeah!</b> Made by and for everyone</p>
+        <p><b><a href="{% url 'users:register' %}">Sign up</a>!</b> Made by and for everyone</p>
     <br>
     <br>
     <h1>Our Platform's Vision</h1>
@@ -55,4 +55,22 @@
     {% comment %} <br><p> Her er link til kartet: <a href="{% url 'web_app:welcome_view' %}">Forsiden</a></p> {% endcomment %}
     <br>
     <p>The very best of luck: <b>Neo Caesar</b></p>
+
+    <script>
+        //new Notification("link", "Notification", "Sign up", "{% url 'users:register' %}");
+
+        let banner_url = "{% static 'gladiatorus-base/img/banners/Under_Construction.png' %}";
+        window.addEventListener('scroll', function() {
+            // If the user has scrolled more than 100px from the top
+            if (window.scrollY > 100) {
+                // Show notification
+                new Notification("link", "", "Sign up", "{% url 'users:register' %}", banner_url);
+                adjustContentPosition();
+        
+                // Remove this event listener to ensure the notification only appears once
+                window.removeEventListener('scroll', arguments.callee);
+            }
+        });
+        
+    </script>
 {% endblock content %}

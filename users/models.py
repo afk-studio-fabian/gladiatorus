@@ -9,6 +9,7 @@ import uuid
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     profileImage = models.ImageField(null=True, blank=True, default="server_essentials/tmp_user_icon.png", upload_to="user_uploads/profile/profile_images")
 
 
@@ -50,3 +51,4 @@ class Styling(models.Model):
 
     def __str__(self):
         return "Styling - " + self.user.username
+    

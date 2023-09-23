@@ -7,8 +7,12 @@ function toggle_main_menu() {
 
 function show_main_menu() {
     // I - 200ms - gmm-status-bar, gmm-navbar-cover
+    document.getElementById("gladiatorus-main-menu-container").style.display = "grid";
+    
+    
     setTimeout(() => {
-        document.getElementById("gladiatorus-main-menu-container").style.display = "grid";
+        document.getElementById("gladiatorus-main-menu-container").style.opacity = 1;
+    document.getElementById("gladiatorus-main-menu-container").style.backgroundColor = "background-color: rgb(0 0 0 / 86%)";
         show_gmm_status_bar();
         show_gmm_navbar_cover();
     }, 100);
@@ -34,13 +38,16 @@ function hide_main_menu() {
     setTimeout(() => {
         hide_gmm_navbar_cover();
         hide_gmm_status_bar();
+        document.getElementById("gladiatorus-main-menu-container").style.opacity = 0;
+        document.getElementById("gladiatorus-main-menu-container").style.backgroundColor = "background-color: rgb(0 0 0 / 0%)";
     }, 200);
 
     // Add more steps as needed, using the same format.
 
     setTimeout(() => {
         document.getElementById("gladiatorus-main-menu-container").style.display = "none";
-    }, 400);
+        
+    }, 600);
 }
 
 function show_gmm_status_bar() {
