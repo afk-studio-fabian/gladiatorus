@@ -11,13 +11,17 @@
         
     </div>
     <div class="gmm-core" id="gmm-core">
-        <h2> Core</h2>
+        <h2 class="gmm-module-header"> Core</h2>
+        {% comment %} {{ user.orientation }} {% endcomment %}
+        {% if user.is_authenticated %}
+            {% include user.userorientation.get_template %}
+        {% else %}
+            {% include "components/core/gmm-core/gmm-core-template.html" %}
+        {% endif %}
+        
     </div>
     <div class="gmm-orientation" id="gmm-orientation">
-        <h2> Orientation</h2>
-        <div class="orientation-circular-menu">
-            <img src="{% static 'gladiatorus-base/img/Orientation_Menu_Example.png' %}" alt="rotation_temp_image"></img>
-        </div>
+        {% include "components/core/gmm-orientation/gmm-orientation-main.html" %}
         
         <div class="orientation-footer-menu">
             <div class="">
@@ -29,10 +33,10 @@
             <div class="">
                 Chat
             </div>
+            
         </div>
     </div>
     <div class="gmm-navbar-cover" id="gmm-navbar-cover">
     </div>
 
 </div>
-

@@ -259,6 +259,7 @@
     -webkit-backdrop-filter: blur(1px);
     backdrop-filter: blur(1px);
     background-color: rgba(255, 255, 255, 0.564);
+    background-color: rgb(255 255 255);
     contain: content;
     transition-duration: 0.3s;
     transition: opacity 0.2s, transform 0.3s;
@@ -313,6 +314,22 @@
     height: 20px;
     background-color: var(--gladiatorus-medium-grey-1);
 
+}
+
+.gmm-module-header{
+    width: 100%;
+    border-bottom: 1px solid #4c4c4c42;
+}
+
+.orientation-banner {
+    width: 100%; /* or whatever width you prefer */
+    height: 150px; /* or whatever height you prefer */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 600px;
+    height: 70px;
+    
 }
 
 /*  

@@ -1,0 +1,13 @@
+{% load static %}
+<h2 class="gmm-module-header"> Orientation</h2>
+<a href="{% url "users.orientation:set_orientation" %}" class="orientation-circular-menu">
+    {% if user.userorientation %}
+        <!-- Render the icon and banner of the selected orientation -->
+        <img src="{{ user.userorientation.orientation.icon.url }}" alt="{{ user.userorientation.orientation }}_icon" />
+        <div class="orientation-banner" style="background-image: url('{{ user.userorientation.orientation.banner_image.url }}');"></div>
+    {% else %}
+        <!-- Render the old image if no orientation is selected -->
+        <img src="{% static 'gladiatorus-base/img/Orientation_Menu_Example.png' %}" alt="rotation_temp_image"></img>
+    {% endif %}
+    {% comment %} <h2>{{ user.userorientation.orientation|default:"No Orientation"}}</h2> {% endcomment %}
+</a>

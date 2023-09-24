@@ -1,0 +1,27 @@
+<!-- set_orientation.html -->
+{% extends "base.html" %}
+{% block content %}
+{% comment %} <form method="post" action="{% url 'users.orientation:set_orientation' %}">
+    {% csrf_token %}
+    <select name="role">
+        {% for value, name in roles %}
+            <option value="{{ value }}">{{ name }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Set Orientation">
+</form> {% endcomment %}
+
+<form method="post">
+    {% csrf_token %}
+    <label for="selected_orientation">Select a new orientation:</label>
+    <select name="selected_orientation" id="selected_orientation">
+      {% for orientation in orientations %}
+        <option value="{{ orientation.id }}">
+          {{ orientation.name }}
+        </option>
+      {% endfor %}
+    </select>
+    <button type="submit">Set Orientation</button>
+  </form>
+{% endblock content %}
+

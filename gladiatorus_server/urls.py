@@ -26,8 +26,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
     path("users/", include("users.urls")),
+    path('users/friend/', include('users.friend.urls')),
+    path('users/orientation/', include('users.orientation.urls')),
+
     path("", include("core.urls")),
 ] 
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 #STATIC FILES IMPORT SOLUTION - NOT WORKING
 #urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
