@@ -6,7 +6,13 @@
     <div class="dashboard">
         <div class="dashboard-header">
             <h1>Hello, {{ user.username|default:'Guest' }}!</h1>
-            <img class="dashboard-header-user-icon-img" src="{% static 'web_app/v1/img/user_icon@500.png' %}" alt="user-profile-image">
+            <!--default user icon-->
+            
+            {% if user.is_authenticated %}
+                <img class="dashboard-header-user-icon-img" src="{{user.profile.profileImage.url}}" alt="user-profile-image">
+            {% else %}
+                <img class="dashboard-header-user-icon-img" src="{% static 'gladiatorus-base/img/icons/user-related/user-not-authenticated_400.png' %}" alt="user-profile-image">
+            {% endif %}
         </div>
         <br>
         <div class="dashboard-content">
@@ -98,21 +104,10 @@ body{
 
 
 <script>
+    
     {% if user.is_authenticated %}
-    function WriteToFile(passForm) {
- 
-        set fso = CreateObject("Scripting.FileSystemObject"); 
-        set s   = fso.CreateTextFile("<your Path>/filename.txt", True);
-    
-    
-        s.writeline("C:\Riot Games\League of Legends\lockfile");
-        s.writeline("http://ddragon.leagueoflegends.com/cdn/11.10.1/data/en_US/champion.json");
-        s.writeline("http://ddragon.leagueoflegends.com/cdn/11.10.1/data/en_US/summoner.json");
-        {% comment %} s.writeline("{% url 'livestreaming:viewChampionselect' long_id=user.profile.long_id %}"); {% endcomment %}
-    
-        s.writeline("-----------------------------");
-        s.Close();
-    }
+    let user_name = "{{user.username}}";
+    console.log("User ["+user_name+"] - Authenticated")
     {% endif %}
     
 </script>

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load l10n %}
+{{ form.media }}
+<div class="form-container">
+    
+    <div class="form-header">
+        <h2>Confirmation - Match Created [{{match.defender.tag}} - {{match.attacker.tag}}]</h2>
+    </div>
+
+    <div class="match-logo">
+        <img src="{{ match.logo.url }}" alt="{{ match.name }}">
+    </div>
+
+    <form method="POST" class="default-form" enctype="multipart/form-data">
+        {% csrf_token %}{% comment %} {{form.as_p}} {% endcomment %}
+        {% localize on %}
+        {% comment %} Change these to be the new {% endcomment %}
+        <p><strong>Match Time:</strong> {{ match.time }}</p>
+        <p><strong>Game:</strong> {{ match.game }}</p>
+        <p><strong>Creator:</strong> {{ match.creator }}</p>
+        <p><strong>Registrar:</strong> {{ match.registrar }}</p>
+        {% endlocalize %}
+    </form>
+    <div class="form-footer">
+        {% if previous_page %}<a class="btn btn-outline-dark" href="{{previous_page}}"><b>← </b></a>{% endif %}
+        <a class="btn btn-outline-dark" href="{% url 'users:dashboard' %}"><div>Dashboard</div></a>
+    </div>
+</div>
+{% endblock content %}

@@ -8,4 +8,6 @@ urlpatterns = [
     path("", views.welcome, name="welcome"),
     path("welcome/", views.welcome, name="welcome"),
     path("home", views.home, name="home"),
+
+    path("components/core/gmm-core/gmm-core-template", views.gmm_core_view, name="gmm_core_view"),
 ]

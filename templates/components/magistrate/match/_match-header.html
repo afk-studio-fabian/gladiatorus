@@ -1,0 +1,103 @@
+{% load static %}
+<div class="match-header">
+    <!-- MATCH HEADER Main -->
+    <!-- Defender -->
+    <a class="defender header-team" href='{% url "dominus.team:team_home" team_id=match.defender.id %}' onclick=go_to_url('{% url "dominus.team:team_home" team_id=match.defender.id %}')>
+        
+        <div class="defender team-score"  onclick=go_to_url('{% url "dominus.team:team_home" team_id=match.defender.id %}')>
+            <h1>{{match.defender.score}}</h1>
+        </div>
+    </a>
+    <div class="defender-team-logo team-logo"  onclick=go_to_url('{% url "dominus.team:team_home" team_id=match.defender.id %}')>
+        <img src="{{match.defender.logo.url}}" alt="{{match.defender.name}}">
+    </div>
+    <div class="defender-team-tag"  onclick=go_to_url('{% url "dominus.team:team_home" team_id=match.defender.id %}')>
+        <h1>{{match.defender.tag}}</h1>
+    </div>
+    <!-- Defender -->
+
+    {% if match.tournament %}
+        <!-- League -->
+        <div class="league league-logo tournament tournament-logo">
+            <img src="{{match.tournament.logo.url}}" alt="{{match.tournament.name}}">
+            
+            {% if match.tournament.banner %}
+                <!--Banner-->
+                <img src="{{match.tournament.banner.url}}" alt="{{match.tournament.name}}" class="league-banner">
+
+            {% else %}
+            {% endif %}
+            
+        </div>
+        <!-- League -->
+    {% endif %}
+    
+    
+    <!-- Attacker -->
+    <a class="attacker header-team"  href='{% url "dominus.team:team_home" team_id=match.attacker.id %}' onclick=go_to_url('{% url "dominus.team:team_home" team_id=match.attacker.id %}')>
+        <div class="attacker team-score">
+            <h1>{{match.attacker.score}}</h1>
+        </div>
+        
+        
+    </a>
+    <div class="attacker-team-logo team-logo" onclick=go_to_url('{% url "dominus.team:team_home" team_id=match.attacker.id %}')>
+        <img src="{{match.attacker.logo.url}}" alt="{{match.attacker.name}}">
+    </div>
+    <div class="attacker-team-tag" onclick=go_to_url('{% url "dominus.team:team_home" team_id=match.attacker.id %}')>
+        <h1>{{match.attacker.tag}}</h1>
+    </div>
+    <!-- Attacker -->
+    
+    <!-- MATCH HEADER Footer -->
+    <div class="match-header-footer-1 match-header-footer-left">
+        <p>Live</p> 
+    </div>
+    <div class="match-header-footer-2 match-header-footer-center">
+        
+        
+    </div>
+    <div class="match-header-footer-2-1">
+        <!--<p>1st Div</p>-->
+        <p>{{match.time}}</p>
+        <!--<p>{{match.round}}Round</p>-->
+    </div>
+    <div class="match-header-footer-2-2">
+        <p>{{match.tournament.name}}</p>
+    </div>
+    <div class="match-header-footer-3 match-header-footer-right">
+        <div class="map-container">
+            <p>{{match.map.name}}</p>
+            <p>Summoners Rift</p>
+            <img src="{{match.map.image.url}}" alt="{{match.map.name}}">
+        </div>
+        <div class="match-game-container">
+            <p>{{match.game.name}}</p>
+            <img src="{{match.game.banner.url}}" alt="{{match.game.name}}">
+        </div>
+    </div>
+
+
+    {% if match.creator == user %}
+
+    <!-- Is Match a Tournament match? -->
+        {% if match.tournament %}
+        <a class="match-header-footer-4 btn-outline-success" href="{% url "magistrate.match:matchUpdateView" match_id=match.id %}">
+            <i class="fas fa-edit"></i>
+        </a>
+
+        <a class="match-header-footer-5 btn-outline-danger" href="{% url "magistrate.match:matchDeleteView" match_id=match.id %}">
+            <i class="fas fa-trash-alt"></i>
+        </a>
+        {% else %}
+        <a class="match-header-footer-4 btn-outline-success" href="{% url "magistrate.match:matchUpdateView" match_id=match.id %}">
+            <i class="fas fa-edit"></i>
+        </a>
+
+        <a class="match-header-footer-5 btn-outline-danger" href="{% url "magistrate.match:matchDeleteView" match_id=match.id %}">
+            <i class="fas fa-trash-alt"></i>
+        </a>
+        {% endif %}
+    <!-- Is Match a Tournament match? -->
+    {% endif %}
+</div>

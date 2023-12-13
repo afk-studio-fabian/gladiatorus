@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .team-app{
+        --team-sponsor: #00b3e0;
+        --team-contact: #ff4200;
+        --team-follow: #ff9000;
+        --team-join: #00e02a;
+        --team-leave: #ff0000;
+    }
+    .match-app{
+
+
+
+        
+
+
+    }
+    
+    .match-content{
+        contain: content;
+    }
+    .match-header-container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 200px;
+        z-index: 10;
+    }
+
+    .matchup-container{
+        display: flex;
+        justify-content: space-between;
+    }
+    .team attacker{
+        direction: rtl;
+    }
+
+
+    
+</style>
+<div class="match-app">
+    <div class="match-header-container">
+        {% include "components/magistrate/match/_match-header.html" %} 
+    </div>
+    <div class="match-content">
+        <div class="matchup-container">
+            <div class="team defender">
+                <div class="team-logo">
+                    <img src="{{match.defender.logo.url}}" alt="{{match.defender.name}}">
+                </div>
+                <div class="team-tag">
+                    <h1>{{match.defender.tag}}</h1>
+                </div>
+                <div class="team-score">
+                    <h1>{{match.defender.score}}</h1>
+                </div>
+                <div class="team-members">
+                    {% for member in match.defender.members.all %}
+                        <div class="team-member">
+                            <div class="team-member-logo">
+                                <img src="{{member.profile.image.url}}" alt="{{member.profile.name}}">
+                            </div>
+                            <div class="team-member-name">
+                                <h1>{{member.profile.name}}</h1>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="team attacker" style="direction: rtl;">
+                <div class="team-logo">
+                    <img src="{{match.attacker.logo.url}}" alt="{{match.attacker.name}}">
+                </div>
+                <div class="team-tag">
+                    <h1>{{match.attacker.tag}}</h1>
+                </div>
+                <div class="team-score">
+                    <h1>{{match.attacker.score}}</h1>
+                </div>
+                <div class="team-members">
+                    {% for member in match.attacker.members.all %}
+                        <div class="team-member">
+                            <div class="team-member-logo">
+                                <img src="{{member.profile.image.url}}" alt="{{member.profile.name}}">
+                            </div>
+                            <div class="team-member-name">
+                                <h1>{{member.profile.name}}</h1>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    
+</script>
+{% endblock content %}
+
+
+
+       

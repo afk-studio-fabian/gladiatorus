@@ -1,6 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+    <style>
+        .welcome-logo-svg-img{
+            transition-duration: 0.343s;
+            opacity: 0;
+            animation: load-welcome-logo-svg-img 1s forwards;
+        }
+        @keyframes load-welcome-logo-svg-img{
+            0%{
+                opacity:0;
+                transform: translate(0px, 100%);
+            }
+
+            100%{
+                opacity:1;
+                transform: translate(0px, 0%);
+            }
+        }
+    </style>
     
     <br>
     <h1>Welcome to Gladiatorus!</h1>
@@ -8,7 +26,7 @@
 
     <p><i>A new kind of tournament platform! :&#41;  &#60;3 </i></p>
     <br>
-        <img style="border-radius: 100%;" width="300px" class="dashboard-header-user-icon-img" src="{% static 'gladiatorus-base/img/logo/V3_round_Transparent.svg' %}" alt="Gladiatorus Icon">
+        <img style="border-radius: 100%;" width="200px" class="dashboard-header-user-icon-img welcome-logo-svg-img" src="{% static 'gladiatorus-base/img/logo/V3_round_Transparent.svg' %}" alt="Gladiatorus Icon">
     <br>
     <br>
         <p><b><a href="{% url 'users:register' %}">Sign up</a>!</b> Made by and for everyone</p>

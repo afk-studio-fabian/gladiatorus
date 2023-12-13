@@ -1,0 +1,258 @@
+/*
+ FOR GMM
+
+*/
+.tournament-small{
+    background-color: #5e5e5e30 !important;
+    border-radius: 6px !important;
+    margin: 15px !important;
+    border: 0px solid white !important;
+    box-shadow: 0px 2px 4px #00000054;
+
+    transition-duration: 0.1s;
+
+    width: 347px;
+}
+.tournament-small:hover{
+    background-color: #c1c1c1 !important;
+    cursor: pointer;
+}
+.tournament-small img{
+    transform: scale(1.0);
+    opacity: 0.5;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 333ms;
+}
+.tournament-small:hover img{
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+/*
+    FOR Tournament App
+*/
+.tournament-header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: 100px 1fr 1fr 1fr 1fr 1fr 1fr;
+    
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 1px;
+
+    background-color: #00000000;
+}
+
+/*
+
+    | Logo | Banner | Banner | Banner | Banner | Banner | Banner |
+    | Logo | Banner | Banner | Banner | Banner | Banner | Banner |
+    | Type | prtcpnt| other  | other  | other  | Game   | Game   |
+    | Edit | Delete | Join   | Leave  | Follow | Sponsor| Other  |
+
+    Logo = Tournament Logo
+    Banner = Tournament Banner
+    Type = Tournament Type
+    prtcpnt = Tournament Participants
+    other = Tournament Other
+    Game = Tournament Game
+    Edit = Tournament Edit
+    Delete = Tournament Delete
+    Join = Tournament Join
+    Leave = Tournament Leave
+
+    Follow = Tournament Follow
+    Sponsor = Tournament Sponsor
+
+*/
+
+@media only screen and (max-width: 600px) {
+    .tournament-header{
+        height: 160px;
+        width: 100%;
+        display: grid;
+        
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: 80px 1fr 1fr 1fr 1fr 1fr 1fr;
+        
+        grid-template-rows: repeat(4, 1fr);
+        grid-gap: 1px;
+
+        background-color: #00000000;
+    }
+    .tournament-logo img{
+        height: 80px;
+        width: 80px;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .tournament-header{
+        height: 120px;
+        width: 100%;
+        display: grid;
+        
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr;
+        
+        grid-template-rows: repeat(4, 1fr);
+        grid-gap: 1px;
+
+        background-color: #00000000;
+    }
+    .tournament-logo img{
+        height: 70px;
+        width: 70px;
+    }
+}
+
+.tournament-header div{
+    /* background-color: #ffffff12; */
+    /* background-color: #ffffffbd;
+    background-color: #ffffff4a; */
+    background-color: #00000021;
+    color: #f2f2f2;
+    /* cursor: pointer; */
+    overflow: hidden;
+    /* backdrop-filter: blur(1px); */
+}
+
+.tournament-header a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tournament-header p{
+    margin-bottom: 0px;
+}
+.p-small{
+    font-size: 10px;
+
+}
+
+
+.tournament-logo{
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    /* border: 1px solid #ffffff1d; */
+    background-color: #ffffff12;
+    
+    overflow: hidden;
+}
+
+.tournament-logo img{
+    height: 100px;
+    width: 100px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+.tournament-banner{
+    grid-column: 2 / 8;
+    grid-row: 1 / 3;
+
+    /* grid-column: 2 / 5;
+    grid-row: 1 / 4; */
+    /* border: 1px solid #ffffff1d; */
+    background-color: #ffffff12;
+    
+    overflow: hidden;
+}
+
+.tournament-banner img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.tournament-name{
+    grid-column: 2 / 8;
+    grid-row: 1 / 2;
+}
+
+
+.tournament-statline{
+    grid-column: 1 / 8;
+    grid-row: 3 / 5;
+
+    /* grid-column: 5 / 8;
+    grid-row: 1 / 4; */
+
+    /* border: 1px solid #ffffff1d; */
+    background-color: #ffffff12;
+    /* background-color: red; */
+    overflow: hidden;
+    z-index: -1;
+    position: relative;
+}
+
+.tournament-statline img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.no-game-selected{
+    height: 100%;
+    width: 100%;
+    background-color: #ededed !important;
+    color: #373737;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+
+}
+
+
+.tournament-type{
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+}
+
+.tournament-date{
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+}
+
+.tournament-participants{
+    grid-column: 5 / 6;
+    grid-row: 3 / 4;
+}
+
+
+
+.tournament-game{
+    grid-column: 6 / 8;
+    grid-row: 3 / 4;
+}
+.tournament-game p{
+    margin-bottom: 0px;
+    background-color: #00000054;
+}
+
+.tournament-game img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+    transform: translate(0px, -48%);
+    z-index: -1;
+}
+
+
+
+.tournament-header-footer-4{
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+}
+
+.tournament-header-footer-5{
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+}

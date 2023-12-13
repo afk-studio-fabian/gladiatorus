@@ -1,0 +1,7 @@
+<div class="organization version-small">
+    <p>{{organization.name}}</p>
+    <div class="item-tourn-bar">
+        <a class="btn btn-outline-success" href="{% url "dominus:organizationUpdateView" organization_id=organization.id %}">Edit</a>
+        <a class="btn btn-outline-danger" href="{% url "dominus:organizationDeleteView" organization_id=organization.id %}">Delete</a>
+    </div>
+</div>

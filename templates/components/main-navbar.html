@@ -22,7 +22,7 @@
             </spacer> {% endcomment %}
             <section style="padding-left: 30px">
                 <div class="main-navbar-orientation-container utility-line-standard-icon    ">
-                    <img src="{% static 'gladiatorus-base/img/Amphitheaters.png' %}" alt="user-icon-image">
+                    <img src="{% static 'gladiatorus-base/img/icons/orientation/orientation_novice_400.png' %}" alt="user-icon-image">
                 </div>
                 
 
@@ -31,7 +31,7 @@
                     {% if user.is_authenticated %}
                         <img src="{{user.profile.profileImage.url}}" alt="user-icon-image">
                     {% else %}
-                        <img src="{% static 'gladiatorus-base/img/not-authenticated-user-image.jpg' %}" alt="user-icon-image">
+                        <img src="{% static 'gladiatorus-base/img/icons/user-related/user-not-authenticated_400.png' %}" alt="user-icon-image">
                     {% endif %}
                 </a>
             </section>

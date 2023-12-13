@@ -1,0 +1,29 @@
+<div class="match match-small version-small" >
+    {% comment %} <a href='{% url "magistrate.match:match_home" match_id=match.id %}' style="">
+        <img src={{match.attacker.logo.url}} alt="Attackers Logo" class="team-logo" height="100px" width="100px">
+        <p>{{match.attacker.name}}</p>
+        <br> 
+        <p>vs</p>
+        <br>
+        <img src={{match.defender.logo.url}} alt="Defenders Logo" class="team-logo" height="100px" width="100px">
+        <p>{{match.defender.name}}</p>
+     {% endcomment %}
+    
+
+    {% comment %} {% if match.creator == user %}
+    <div class="item-tourn-bar">
+        <a class="btn btn-outline-success" href="{% url "magistrate.match:matchUpdateView" match_id=match.id %}">Edit</a>
+        <a class="btn btn-outline-danger" href="{% url "magistrate.match:matchDeleteView" match_id=match.id %}">Delete</a>
+    </div>
+    {% endif %} {% endcomment %}
+
+    {% if match.creator == user %}
+    <div href='{% url "magistrate.match:match_home" match_id=match.id %}' style="text-decoration:none;" onclick=go_to_url('{% url "magistrate.match:match_home" match_id=match.id %}')>
+        {% include "components/magistrate/match/_match-header.html" with match=match %}
+    </div>  
+    {% else %}
+    <a href='{% url "magistrate.match:match_home" match_id=match.id %}' style="text-decoration:none;">
+        {% include "components/magistrate/match/_match-header.html" with match=match %}
+    </a>  
+    {% endif %}
+</div>

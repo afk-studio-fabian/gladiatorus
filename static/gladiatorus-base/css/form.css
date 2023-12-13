@@ -1,0 +1,7 @@
+.team-logo{
+    max-width: 170px;
+    max-height: 170px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}

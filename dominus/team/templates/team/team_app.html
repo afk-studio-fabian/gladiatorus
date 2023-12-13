@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    
+</style>
+<div class="team-app">
+    {% include "components/dominus/team/_team-header.html" %}
+    <div class="team-content-navtabs">
+        {% comment %} I want the entire content screen to change when you click a tab, but no reload the entire page {% endcomment %}
+        <div class="team-content-navtabs-item">
+            <a href="#about">About</a>
+            <a href="#members">Members</a>
+            <a href="#history">History</a>
+            <a href="#statistic">Statistic</a>
+            <a href="upcoming">Upcoming</a>
+        </div>
+    </div>
+    <div class="team-content">
+        <div class="team-content-item" id="about">
+            <h1>About</h1>
+            <p>{{ team.description }}</p>
+        </div>
+        <div class="team-content-item" id="members">
+            <h1>Members</h1>
+            <p>Our members:</p>
+            
+            {% for member in team.members.all %}
+                <div class="member-card">
+                    <div class="member-card-image">
+                        <img src="{{ member.profile.avatar.url }}" alt="{{ member.username }}">
+                    </div>
+                    <div class="member-card-name">
+                        <h1>{{ member.username }}</h1>
+                    </div>
+                    <div class="member-card-role">
+                        <p>{{ member.profile.role }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+        <div class="team-content-item" id="history">
+            <h1>History</h1>
+            <p>History</p>
+        </div>
+        <div class="team-content-item" id="statistic">
+            <h1>Statistic</h1>
+            <p>Statistic</p>
+        </div>
+        <div class="team-content-item" id="upcoming">
+            <h1>Upcoming</h1>
+            <p>Upcoming</p>
+
+            {% for match in team.attacker_matches.all %}
+                {% include "components/magistrate/_match.html" %}
+            {% endfor %}
+            {% for match in team.defender_matches.all %}
+                {% include "components/magistrate/_match.html" %}
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+<script>
+    $(window).scroll(function() {
+        return;
+        var scroll = $(window).scrollTop();
+        if (scroll >= 200) {
+            $(".team-header").addClass("team-header-scrolled");
+            $(".team-content-navtabs").addClass("team-content-navtabs-scrolled");
+            //Add This team-content-scrolled
+            //$(".team-content").addClass("team-content-scrolled");
+        } else {
+            $(".team-header").removeClass("team-header-scrolled");
+            $(".team-content-navtabs").removeClass("team-content-navtabs-scrolled");
+            //Add This team-content-scrolled
+            //$(".team-content").removeClass("team-content-scrolled");
+        }
+    });
+
+</script>
+{% endblock content %}
+
+
+
+        {% comment %} {% if user.is_authenticated %}
+            {% if user in team.members.all %}
+                <a href="{% url 'team:leave' team.id %}" class="btn btn-danger">Leave Team</a>
+            {% else %}
+                <a href="{% url 'team:join' team.id %}" class="btn btn-success">Join Team</a>
+            {% endif %}
+        {% endif %}
+
+        {% if user.is_authenticated %}
+            {% if user == team.owner %}
+                <a href="{% url 'team:edit' team.id %}" class="btn btn-primary">Edit Team</a>
+            {% endif %}
+        {% endif %}
+
+        {% if user.is_authenticated %}
+            {% if user == team.owner %}
+                <a href="{% url 'team:delete' team.id %}" class="btn btn-danger">Delete Team</a>
+            {% endif %}
+        {% endif %}
+
+        {% if user.is_authenticated %}
+            {% if user == team.owner %}
+                <a href="{% url 'team:invite' team.id %}" class="btn btn-primary">Invite Member</a>
+            {% endif %}
+        {% endif %}
+
+        {% if user.is_authenticated %}
+            {% if user in team.members.all %}
+                <a href="{% url 'team:kick' team.id %}" class="btn btn-danger">Kick Member</a>
+            {% endif %}
+        {% endif %} {% endcomment %}
+
+
+        {% comment %} 
+        If you are logged in, you should see:
+            - a sponsor button
+            - A contact button
+            - A follow button
+            - A join button (if you are not a member)
+            - A leave button (if you are a member)
+
+        If you are not logged in, you should see:
+            all the same buttons as if logged in, but they should be greyed out and not clickable
+
+        No matter if your are logged in or not, you should see:
+            - A large select roster button (with the rosters's game's name and image)
+        {% endcomment %}

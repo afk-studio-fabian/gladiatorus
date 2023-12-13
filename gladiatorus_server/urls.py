@@ -25,11 +25,33 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
+    
+    ### --- Core --- ###
+    path("", include("core.urls")),
+    
+    ### --- Users --- ###
     path("users/", include("users.urls")),
     path('users/friend/', include('users.friend.urls')),
     path('users/orientation/', include('users.orientation.urls')),
+    
 
-    path("", include("core.urls")),
+    ### --- Magistrate --- ###
+    path("magistrate/", include("magistrate.urls")),
+    path("magistrate/tournament/", include("magistrate.tournament.urls")),
+    path("magistrate/game/", include("magistrate.game.urls")),
+    path("magistrate/match/", include("magistrate.match.urls")),
+
+
+    ### --- Dominus --- ###
+    path("dominus/", include("dominus.urls")),
+    path("dominus/team/", include("dominus.team.urls")),
+    path("dominus/roster/", include("dominus.roster.urls")),
+
+    ### --- Patronus --- ###
+
+    ### --- Gladiatori --- ###
+
+    
 ] 
 
 if settings.DEBUG:

@@ -1,0 +1,427 @@
+/*
+ FOR GMM
+*/
+.match-small{
+    background-color: #111111 !important;
+    background-color: #323232 !important;
+    /* border-radius: 0px !important; */
+    margin: 15px !important;
+    border: 0px solid white !important;
+    box-shadow: 0px 2px 4px #00000054;
+    width: 347px;
+    height: 160px;
+    transition-duration: 0.1s;
+}
+.match-small:hover{
+    background-color: #323232 !important;
+    background-color: #111111 !important;
+    cursor: pointer;
+}
+
+.match-small img{
+    transform: scale(1.0);
+    opacity: 0.5;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 333ms;
+
+}
+.match-small:hover img{
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.match-small .match-header{
+    height: 160px;
+    grid-template-columns: 80px 80px 1fr 1fr 1fr 80px 80px !important;
+}
+.match-small .team-logo img{
+    height: 80px;
+    width: 80px;
+    border-radius: 0px;
+    margin: 0px;
+}
+
+/*
+    FOR Match App
+*/
+.match-header{
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+
+    display: grid;
+    
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: 100px 100px 1fr 1fr 1fr 100px 100px;
+    
+    grid-template-rows: repeat(8, 1fr);
+    grid-gap: 1px;
+
+    background-color: #00000000;
+
+    backdrop-filter: blur(1px);
+    
+
+
+    /*** Match GRID ***/
+    /*
+    | Logo | Tag | Stats | League | Stats | Tag | Logo |
+    | Logo |score| blank | League | blank |score| Logo |
+    >____ OLD _____<
+
+
+    | Logo | Tag | League | League | League | Tag | Logo |
+    | Logo |score| League | League | League |score| Logo |
+    | blank|blank| League | League | League |blank| blank|
+    >____ V2 _____<
+    
+    | Logo | Tag | League | League | League | Tag | Logo |
+    | Logo | Tag | League | League | League | Tag | Logo |
+    | Logo |score| League | League | League |score| Logo |
+    | Logo |score| League | League | League |score| Logo |
+    | blank|blank| stats  | League | round  |live | live |
+    | blank|blank| Title  | Title  | Title  |live | live |
+    | blank|blank| blank  | blank  | blank  |live | live |
+    | blank|blank| blank  | blank  | blank  |live | live |
+
+
+    Explainer here:
+    | Static here|   Dynamic spacing here   |Static here |
+    | Static here|   Dynamic spacing here   |Static here |
+    | Static here|   Dynamic spacing here   |Static here |
+    | Static here|   Dynamic spacing here   |Static here |
+
+
+
+             x   y 
+    Logo   = 4 * 4 points
+    Tag    = 4 * 2 points
+    Score  = 4 * 2 points
+
+    League = Dynamic * 4
+
+    Stats  = Dynamic * 1
+    Round  = Dynamic * 1
+    Title  = Dynamic * 1
+
+    Live   = 8 * 4 points
+
+    Points is like meassuring system
+
+    */
+} 
+@media only screen and (max-width: 600px) {
+    .match-header{
+        height: 160px;
+        width: 100%;
+        display: grid;
+        
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: 80px 80px 1fr 1fr 1fr 80px 80px;
+        
+        grid-template-rows: repeat(8, 1fr);
+        grid-gap: 1px;
+
+        background-color: #00000000;
+    }
+    .defender-team-logo img, .attacker-team-logo img{
+        height: 80px;
+        width: 80px;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .match-header{
+        height: 140px;
+        width: 100%;
+        display: grid;
+        
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: 70px 70px 1fr 1fr 1fr 70px 70px;
+        
+        grid-template-rows: repeat(8, 1fr);
+        grid-gap: 1px;
+
+        background-color: #00000000;
+    }
+    .defender-team-logo img, .attacker-team-logo img{
+        height: 70px;
+        width: 70px;
+    }
+
+    .match-header-footer-1{
+        grid-column: 1 / 2;
+        grid-row: 5 / 7;
+    }
+
+    .match-header-footer-right{
+        grid-column: 7 / 8;
+        grid-row: 5 / 7;
+    
+    }
+
+    .match-header-footer-2-1, .match-header-footer-2-2{
+        grid-column: 2 / 7;
+        grid-row: 5 / 6;
+    
+    }
+}
+
+.match-header div{
+    /* border: 1px solid #ffffff1d; */
+    background-color: #ffffff12;
+    cursor: pointer;
+    overflow: hidden;
+}
+.match-header div:hover{
+    /* border: 1px solid #ffffff1d; */
+    background-color: #00000075;
+}
+.match-header div:active{
+    /* border: 1px solid #ffffff1d; */
+    background-color: #00140075;
+}
+
+.match-header p{
+    margin-bottom: 0px;
+}
+.header-team{
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+.team-logo{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.team-logo img{
+    
+    width: auto;
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+    margin: 0px;
+}
+
+.defender{
+    grid-column: 2 / 3;
+    grid-row: 1 / 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.attacker{
+    grid-column: 6 / 7;
+    grid-row: 1 / 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.defender-team-logo{
+    grid-column: 1 / 2;
+    grid-row: 1 / 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.defender-team-tag{
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.defender header-team{
+    grid-column: 2 / 3;
+    grid-row: 1 / 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.attacker header-team{
+    grid-column: 5 / 6;
+    grid-row: 1 / 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.attacker-team-logo{
+    grid-column: 7 / 8;
+    grid-row: 1 / 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.attacker-team-tag{
+    grid-column: 6 / 7;
+    grid-row: 1 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.league{
+    grid-column: 3 / 6;
+    grid-row: 1 / 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    contain: content;
+}
+.league img{
+    height: 100%;
+    
+    object-fit: cover;
+}
+.league-banner{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit:fill;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+
+.match-header-footer-1, .match-header-footer-left{
+    grid-column: 1 / 3;
+    grid-row: 5 / 7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.match-header-footer-2, .match-header-footer-center{
+    grid-column: 3 / 6;
+    grid-row: 5 / 7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display:none;
+}
+.match-header-footer-2-1{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    grid-column: 3 / 6;
+    grid-row: 5 / 6;
+}
+.match-header-footer-2-2{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    grid-column: 3 / 6;
+    grid-row: 6 / 7;
+}
+
+.match-header-footer-3, .match-header-footer-right{
+    grid-column: 6 / 8;
+    grid-row: 5 / 7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.match-game-container, .map-container{
+    height: 100%;
+    contain: content;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+.match-game-container img{
+    
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.match-game-container p{
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+    /* font-weight: bold; */
+    text-transform: uppercase;
+    padding: 0.5rem;
+    background-color: #00000063;
+    font-size: 12px;
+    width: 100%;
+}
+
+.match-header-footer-4{
+    grid-column: 1 / 2;
+    grid-row: 7 / 9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.match-header-footer-5{
+    grid-column: 2 / 3;
+    grid-row: 7 / 9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+.match-content{
+    margin-top: 200px;
+}
+
+
+@media only screen and (max-width: 450px) {
+    .match-header{
+        height: 140px;
+        width: 100%;
+        display: grid;
+        
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: 70px 70px 1fr 1fr 1fr 70px 70px;
+        
+        grid-template-rows: repeat(8, 1fr);
+        grid-gap: 1px;
+
+        background-color: #00000000;
+    }
+    .defender-team-logo img, .attacker-team-logo img{
+        height: 70px;
+        width: 70px;
+    }
+
+    .match-header-footer-1{
+        grid-column: 1 / 2;
+        grid-row: 5 / 7;
+    }
+
+    .match-header-footer-right{
+        grid-column: 7 / 8;
+        grid-row: 5 / 7;
+    
+    }
+
+    .match-header-footer-2-1{
+        grid-column: 2 / 7;
+        grid-row: 5 / 6;
+    }
+    .match-header-footer-2-2{
+        grid-column: 2 / 7;
+        grid-row: 6 / 7;
+    }
+}

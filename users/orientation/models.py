@@ -47,15 +47,22 @@ class UserOrientation(models.Model):
     
 
     def get_template(self):
-        print("ME GETS TEMPLATE")
+        print("ME GETS TEMPLATE - user.orientation.models")
         if self.orientation.name.lower() in ['magistrate', 'dominus', 'gladiatorus']:
             return f'components/core/gmm-core/gmm-core-{self.orientation.name.lower()}.html'
         else:
+            print(self.orientation.name.lower())
             return 'components/core/gmm-core/gmm-core-template.html'
     
     def __str__(self):
         return f'{self.user.username} - {self.orientation.name}'
     
+# class UserAllowedOrientations(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     orientations = models.ManyToManyField(Orientation,related_name='users_allowed')
+    
+#     def __str__(self):
+#         return f'{self.user.username} - {self.orientations}'
 
 class UserOrientationTracker(models.Model):
     user_orientation = models.ForeignKey(UserOrientation, on_delete=models.CASCADE)

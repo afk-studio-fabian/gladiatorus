@@ -1,0 +1,81 @@
+<div class="team-header">
+    {% comment %} Team Logo {% endcomment %}
+    <div class="team-header-logo">
+        <img src="{{ team.logo.url }}" alt="Team Logo">
+    </div>
+    {% comment %} Team Name {% endcomment %}
+    <div class="team-header-name">
+        <h1>{{ team.name }}</h1>
+    </div>
+
+    <div class="team-action-buttons">
+        {% if user.is_authenticated %}
+            <button class="sponsor-button">
+                <i class="fas fa-shield"></i>
+                <span class="button-footer">Sponsor</span>
+            </button>
+            <button class="contact-button">
+                <i class="fas fa-paper-plane"></i>
+                <span class="button-footer">Contact</span>
+            </button>
+            <button class="follow-button">
+                <i class="fas fa-bell"></i>
+                <span class="button-footer">Follow</span>
+            </button>
+            {% if user not in roster.members.all %}
+                <button class="join-button">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span class="button-footer">Join</span>
+                </button>
+            {% else %}
+                <button class="leave-button">
+                    <i class="fas fa-times"></i>
+                    <span class="button-footer">Leave</span>
+                </button>
+            {% endif %}
+        {% else %}
+            <button class="sponsor-button disabled">
+                <i class="fas fa-shield"></i>
+                <span class="button-footer">Sponsor</span>
+            </button>
+            <button class="contact-button disabled">
+                <i class="fas fa-paper-plane"></i>
+                <span class="button-footer">Contact</span>
+            </button>
+            <button class="follow-button disabled">
+                <i class="fas fa-bell"></i>
+                <span class="button-footer">Follow</span>
+            </button>
+            <button class="join-button disabled">
+                <i class="fas fa-sign-in-alt"></i>
+                <span class="button-footer">Join</span>
+            </button>
+        {% endif %}
+    </div>
+    {% if team.roster.all.0 %}
+    <div class="select-roster-button">
+        <div class="roster-name">
+            <p><b>{{ team.roster.all.0.name }}</b></p>
+            <p>Select Roster</p>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="game-image">
+            <img src="{{ team.roster.all.0.game.banner.url }}" alt="{{ team.roster.all.0.game.name }}">
+            <div class="game-name">{{ team.roster.all.0.game.name }}</div>
+        </div>
+    </div>
+    {% else %}
+    <div class="no-roster-container" >
+        <p>No Rosters</p>
+    </div>
+    {% endif %}
+    
+
+    <div class="team-header-banner">
+        {% if team.banner %}
+        <img src="{{ team.banner.url }}" alt="Team Banner">
+        {% else %}
+        {% endif %}
+        
+    </div>
+</div>

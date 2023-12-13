@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<head>
+</head>
+<div class = "container">
+    <form method="POST" enctype="multipart/form-data" class="default-form">
+        {% csrf_token %}
+        <h1> Are you sure you want to {{form_title}}? </h1>
+        <br>
+        <button class="btn btn-outline-danger publish-ad-btn" type="submit">{{form_title}}</button>
+        <a class="btn btn-outline-secondary publish-ad-btn" href="{% url 'users:dashboard' %}">Cancel</a>
+        {% if previous_page %}<a class="btn btn-outline-dark" href="{{previous_page}}"><b>← </b></a>{% endif %}
+    </form> 
+</div>
+{% endblock content %}

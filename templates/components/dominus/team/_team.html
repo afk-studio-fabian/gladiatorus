@@ -1,0 +1,12 @@
+<div class="team version-small" >
+    {% comment %} <a href='{% url "dominus.team:team_home" team_id=team.id %}'>{{team.name}}</a>
+    <div class="item-tourn-bar">
+        <a class="btn btn-outline-success" href="{% url "dominus.team:teamUpdateView" team_id=team.id %}">Edit</a>
+        <a class="btn btn-outline-danger" href="{% url "dominus.team:teamDeleteView" team_id=team.id %}">Delete</a>
+    </div> {% endcomment %}
+
+    <div href='{% url "dominus.team:team_home" team_id=team.id %}'  style="text-decoration:none;" onclick=go_to_url('{% url "dominus.team:team_home" team_id=team.id %}')>
+        {% include "components/dominus/team/_team-header.html" %}
+    </div>
+    
+</div>

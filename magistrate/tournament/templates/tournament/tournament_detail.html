@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load l10n %}
+{{ form.media }}
+<div class="form-container">
+    
+    <div class="form-header">
+        <h2>Confirmation - Tournament Created [{{tournament.name}}]</h2>
+    </div>
+    <div class="tournament-logo">
+        <img src="{{ tournament.logo.url }}" alt="{{ tournament.name }}">
+    </div>
+
+    <form method="POST" class="default-form" enctype="multipart/form-data">
+        {% csrf_token %}{% comment %} {{form.as_p}} {% endcomment %}
+        {% localize on %}
+            <p><strong>Start Date:</strong> {{ tournament.start_date }}</p>
+            <p><strong>End Date:</strong> {{ tournament.end_date }}</p>
+            <p><strong>Location:</strong> {{ tournament.location }}</p>
+            <p><strong>Prize:</strong> {{ tournament.prize }}</p>
+            <p><strong>Organizer:</strong> {{ tournament.organizer }}</p>
+            <p><strong>Description:</strong> {{ tournament.description }}</p>
+        {% endlocalize %}
+        <a href="{% url "magistrate.tournament:tournament_home" tournament_id=tournament.id %}" type="submit" class="btn btn-outline-success" >
+            Go to Tournament Home
+        </a>
+    </form>
+    <div class="form-footer">
+        {% if previous_page %}<a class="btn btn-outline-dark" href="{{previous_page}}"><b>← </b></a>{% endif %}
+        <a class="btn btn-outline-dark" href="{% url 'users:dashboard' %}"><div>Dashboard</div></a>
+    </div>
+</div>
+{% endblock content %}

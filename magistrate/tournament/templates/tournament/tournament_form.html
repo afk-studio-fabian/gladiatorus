@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load l10n %}
+{{ form.media }}
+<div class="form-container">
+    
+    <div class="form-header">
+        <h2>Register Tournament</h2>
+    </div>
+
+    <form method="POST" class="default-form" >
+        {% csrf_token %}{% comment %} {{form.as_p}} {% endcomment %}
+        {% localize on %}
+            {{form|crispy}}
+        {% endlocalize %}
+        <input type="submit" value="Register" class="btn btn-outline-success" >
+    </form>
+    <div class="form-footer">
+        {% if previous_page %}<a class="btn btn-outline-dark" href="{{previous_page}}"><b>← </b></a>{% endif %}
+        <a class="btn btn-outline-dark" href="{% url 'users:dashboard' %}"><div>Dashboard</div></a>
+    </div>
+</div>
+{% endblock content %}

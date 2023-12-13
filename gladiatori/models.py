@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 # If you use Django's built-in User model for authentication, or a custom user model
 
 class Player(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='player_profile')
-    handle = models.CharField(max_length=100)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='player')
+    handle = models.CharField(max_length=100) # Add handle check function
     bio = models.TextField(blank=True)
     avatar = models.ImageField(upload_to='players/avatars/', blank=True, null=True)
     join_date = models.DateTimeField(auto_now_add=True)
@@ -14,4 +14,5 @@ class Player(models.Model):
     
     # ... any other player-specific details ...
 
-    
+    def __str__(self):
+        return self.handle

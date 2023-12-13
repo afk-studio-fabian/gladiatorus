@@ -11,7 +11,14 @@
     <input type="submit" value="Set Orientation">
 </form> {% endcomment %}
 
-<form method="post">
+
+<div class="form-container">
+    
+  <div class="form-header">
+      <h2>Select orientation</h2>
+  </div>
+
+  <form method="post">
     {% csrf_token %}
     <label for="selected_orientation">Select a new orientation:</label>
     <select name="selected_orientation" id="selected_orientation">
@@ -23,5 +30,12 @@
     </select>
     <button type="submit">Set Orientation</button>
   </form>
+  <div class="form-footer">
+    {% if previous_page %}
+        <a class="btn btn-outline-dark" href="{{previous_page}}">Back</a>
+    {% endif %}
+    <a class="btn btn-outline-dark" href="{% url 'users:dashboard' %}"><div>Back to dashboard</div></a>
+  </div>
+</div>
 {% endblock content %}
 

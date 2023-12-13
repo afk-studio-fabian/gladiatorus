@@ -1,0 +1,24 @@
+<div class="tournament tournament-small version-small">
+
+    <!--tournament_home -->
+    
+    {% comment %} <p>{{tournament.name}}</p>
+    <div class="item-tourn-bar">
+        <a class="btn btn-outline-success" href="{% url "magistrate.tournament:tournamentUpdateView" tournament_id=tournament.id %}">Edit</a>
+        <a class="btn btn-outline-danger" href="{% url "magistrate.tournament:tournamentDeleteView" tournament_id=tournament.id %}">Delete</a>
+    </div> {% endcomment %}
+
+
+
+
+
+    {% if tournament.creator == user %}
+    <div style="text-decoration:none;" onclick=go_to_url('{% url "magistrate.tournament:tournament_home" tournament_id=tournament.id %}')>
+        {% include "components/magistrate/tournament/_tournament-header.html" with tournament=tournament %}
+    </div>  
+    {% else %}
+    <a href='{% url "magistrate.tournament:tournament_home" tournament_id=tournament.id %}' style="text-decoration:none;">
+        {% include "components/magistrate/tournament/_tournament-header.html" with tournament=tournament %}
+    </a>  
+    {% endif %}
+</div>

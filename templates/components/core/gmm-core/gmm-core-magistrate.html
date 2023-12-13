@@ -1,6 +1,28 @@
-<div class="gmm-core-urls-container">
+<div class="gmm-core-urls-container" id="gmm-core-urls-container">
     <h2>Forms - Magistrate</h2>
     {% for core_urls in orientation.forms %}
         <a class="btn btn-outline" href="{% url "core_urls.link" %}">{{core_urls.name}}</a>
     {% endfor %}
+    <a class="btn btn-outline" href="{% url "magistrate.tournament:registerTournamentView" %}">Register Tournament</a>
+    <a class="btn btn-outline" href="{% url "magistrate.game:registerGameView" %}">Register Game</a>
+    <a class="btn btn-outline" href="{% url "magistrate.match:registerMatchView" %}">Register Match</a>
+
+
+    <h3>Registered Tournaments</h3>
+    {% for tournament in user.registered_tournaments.all %}
+        {% include "components/magistrate/_tournament.html" with tournament=tournament %}
+    {% endfor %}
+
+    <br>
+    <h3>Registered Matches</h3>
+    {% for match in user.registered_matches.all %}
+        {% include "components/magistrate/_match.html" with match=match %}
+    {% endfor %}
+    
+    <br>
+    {% comment %} <h3>Registered Games</h3>
+
+    {% for game in magistrate.game.game.all %}
+        {% include "components/magistrate/_game.html" %}
+    {% endfor %} {% endcomment %}
 </div>

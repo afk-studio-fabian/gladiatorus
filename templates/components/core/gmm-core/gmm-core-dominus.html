@@ -1,6 +1,19 @@
-<div class="gmm-core-urls-container">
-    <h2>Forms - Magistrate</h2>
+<div class="gmm-core-urls-container" id="gmm-core-urls-container">
+    <h2>Forms - Dominus</h2>
     {% for core_urls in orientation.forms %}
         <a class="btn btn-outline" href="{% url "core_urls.link" %}">{{core_urls.name}}</a>
     {% endfor %}
+    <a class="btn btn-outline" href="{% url "dominus:registerOrganizationView" %}">Register Organization</a>
+    <a class="btn btn-outline" href="{% url "dominus.team:registerTeamView" %}">Register Team</a>
+    <h3>Organizations</h3>
+    {% for organization in user.owned_organizations.all %}
+        {% include "components/dominus/_organization.html" %}
+    {% endfor %}
+
+    <h3>Teams</h3>
+    {% for team in user.player.teams.all %}  
+        {% include "components/dominus/team/_team.html" %}
+    {% endfor %}
 </div>
+
+{% comment %} Fix teams by looking at the teams in the users organizations {% endcomment %}

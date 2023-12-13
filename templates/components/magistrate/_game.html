@@ -1,0 +1,7 @@
+<div class="game version-small">
+    <p>{{game.name}}</p>
+    <div class="item-game-bar">
+        <a class="btn btn-outline-success" href="{% url "magistrate.game:gameUpdateView" game_id=game.id %}">Edit</a>
+        <a class="btn btn-outline-danger" href="{% url "magistrate.game:gameDeleteView" game_id=game.id %}">Delete</a>
+    </div>
+</div>

@@ -2,6 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Orientation, UserOrientation, UserOrientationTracker, UserOrientationLog
 from datetime import datetime
+from django.http import JsonResponse, HttpResponseBadRequest
+from django.views import View
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import ensure_csrf_cookie
+import json
 
 from .utils import switch_user_orientation
 
@@ -21,8 +26,44 @@ def set_orientation(request):
 
 
 
+class SetOrientationView(View):
+    @method_decorator(ensure_csrf_cookie)
+    def post(self, request, *args, **kwargs):
+        data = json.loads(request.body)
+        # new_orientation = data.get('orientation')
+        
+        # # Perform the logic to set the new orientation here.
+        # # For example, create or update UserOrientation object, etc.
+        
+        # return JsonResponse({'success': True, 'message': 'Orientation updated successfully.'})
 
+        new_orientation_id = data.get('selected_orientation')
 
+        # Validate the orientation ID
+        try:
+            orientation = Orientation.objects.get(pk=new_orientation_id)
+        except Orientation.DoesNotExist:
+            return HttpResponseBadRequest('Invalid orientation ID.')
+
+        # Update the orientation for the user
+        try:
+            switch_user_orientation(request.user, orientation)
+        except Exception as e:  # Catch any exception that might arise from the helper function
+            return JsonResponse({'success': False, 'message': str(e)})
+
+        # Fetch updated UserOrientation
+        user_orientation = UserOrientation.objects.get(user=request.user)
+        # Return success response
+        #return JsonResponse({'success': True, 'message': 'Orientation updated successfully.'})
+
+        return JsonResponse({
+            'success': True,
+            'message': 'Orientation updated successfully.',
+            'name': user_orientation.orientation.name,
+            'iconUrl': user_orientation.orientation.icon.url,
+            'bannerUrl': user_orientation.orientation.banner_image.url
+        })
+    
 # def set_orientation(request):
 #     if request.method == 'POST':
 #         role = request.POST.get('role')

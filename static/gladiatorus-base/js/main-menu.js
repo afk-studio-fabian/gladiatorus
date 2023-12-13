@@ -15,13 +15,13 @@ function show_main_menu() {
     document.getElementById("gladiatorus-main-menu-container").style.backgroundColor = "background-color: rgb(0 0 0 / 86%)";
         show_gmm_status_bar();
         show_gmm_navbar_cover();
-    }, 100);
+    }, 0);
 
     // II - 400ms - gmm-core, gmm-orientation
     setTimeout(() => {
         show_gmm_core();
         show_gmm_orientation();
-    }, 200);
+    }, 50);
 
     // Add steps III and IV as needed, using the same format.
 
@@ -33,21 +33,21 @@ function hide_main_menu() {
     setTimeout(() => {
         hide_gmm_orientation();
         hide_gmm_core();
-    }, 100);
+    }, 0);
 
     setTimeout(() => {
         hide_gmm_navbar_cover();
         hide_gmm_status_bar();
         document.getElementById("gladiatorus-main-menu-container").style.opacity = 0;
         document.getElementById("gladiatorus-main-menu-container").style.backgroundColor = "background-color: rgb(0 0 0 / 0%)";
-    }, 200);
+    }, 100);
 
     // Add more steps as needed, using the same format.
 
     setTimeout(() => {
         document.getElementById("gladiatorus-main-menu-container").style.display = "none";
         
-    }, 600);
+    }, 500);
 }
 
 function show_gmm_status_bar() {

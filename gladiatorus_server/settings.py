@@ -55,24 +55,39 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
 
+    'datetimewidget',
+    'fontawesomefree',
 
+    ### - Users - ###
     'users.friend',
     'users.orientation',
 
-    ###
+    ### - Core - ###
     'core',
-    'gladiatori',
-    'patronus',
-    'dominus',
-    'magistrate',
-    
 
+    ### - Gladiatori - ###
+    'gladiatori',
+
+    ### - Patronus - ###
+    'patronus',
+
+    ### - Dominus - ###
+    'dominus',
+    'dominus.team',
+    'dominus.roster',
+
+    ### - Magistrate - ###
+    'magistrate',
+    'magistrate.tournament',
+    'magistrate.game',
+    'magistrate.match',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -142,6 +157,8 @@ TIME_ZONE = 'CET'
 USE_I18N = True
 
 USE_TZ = True
+
+USE_L10N = True
 
 
 # Static files (CSS, JavaScript, Images)

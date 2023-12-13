@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load l10n %}
+{{ form.media }}
+<div class="form-container">
+    
+    <div class="form-header">
+        <h2>{% if form_title %}{{form_title}}{% else %}Form{% endif %}</h2>
+        {% block form_header %}{% endblock form_header %}
+    </div>
+
+    <form method="POST" class="default-form" enctype="multipart/form-data">
+        {% csrf_token %}{% comment %} {{form.as_p}} {% endcomment %}
+        {% localize on %}
+            {{form|crispy}}
+        {% endlocalize %}
+        {% block form_body %}{% endblock form_body %}
+        <input type="submit" value="{% if form_title %}{{form_title}}{% else %}Submit{% endif %}" class="btn btn-outline-success" >
+    </form>
+    <div class="form-footer">
+        {% if previous_page %}<a class="btn btn-outline-dark" href="{{previous_page}}"><b>← </b></a>{% endif %}
+        <a class="btn btn-outline-dark" href="{% url 'users:dashboard' %}"><div>Dashboard</div></a>
+        {% block form_footer %}{% endblock form_footer %}
+    </div>
+</div>
+{% endblock content %}

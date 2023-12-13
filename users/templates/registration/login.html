@@ -10,15 +10,18 @@
         <h2>Login</h2>
     </div>
 
-    <form method="POST" class="default-form">
+    <form method="POST" class="default-form" enctype="multipart/form-data">
         {% csrf_token %}
         {% comment %} {{form.as_p}} {% endcomment %}
         {{form|crispy}}
         <input type="submit" value="Login" class="btn btn-outline-success" >
     </form>
     <div class="form-footer">
-        <a class="btn btn-outline-dark" href="{% url 'users:dashboard' %}"><div>Back to dashboard</div></a>
-        <a class="btn btn-outline-warning" href="{% url 'password_reset' %}"     ><div>Reset password</div></a>
+        {% if previous_page %}<a class="btn btn-outline-dark" href="{{previous_page}}">←</a>{% endif %}
+        
+        
+        <a class="btn btn-outline-dark" href="{% url 'users:dashboard' %}"><div>Dashboard</div></a>
+        <a class="btn btn-outline-warning" href="{% url 'password_reset' %}"><div>Reset password</div></a>
         <a class="btn btn-outline-primary" href="{% url 'users:register' %}" ><div>Register</div></a>
     </div>
 </div>

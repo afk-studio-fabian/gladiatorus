@@ -1,0 +1,507 @@
+.team-app{
+    --team-sponsor: #00b3e0;
+    --team-contact: #ff4200;
+    --team-follow: #ff9000;
+    --team-join: #00e02a;
+    --team-leave: #ff0000;
+}
+.team-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a1a1a;
+    
+    position: relative;
+    z-index: 5;
+    height: 200px;
+    /* transition: all 0.2s ease-in-out; */
+
+    /* 
+    padding: 20px;
+    Grid 
+    mode: [large space]
+
+    | 1fr | 1fr | 1fr | 1fr | 1fr |
+    | 1fr | 1fr | 1fr | 1fr | 1fr |
+    | 1fr | 1fr | 1fr | 1fr | 1fr |
+
+
+    | Logo | Logo | Name | Name | Name |
+    | Logo | Logo | Name | Name | Name |
+    | a_btn | a_btn | a_btn | a_btn | a_btn |
+
+    Logo = team logo
+    Name = team name
+    a_btn = team action button
+    rstr = roster select button
+
+    banner-image: covers the entire grid, with a z-index of -1
+
+    
+    
+    */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+}
+.team-header div{
+    transition: all 0.2s ease-in-out;
+}
+
+.team-header-logo{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    box-shadow: 0 0 18px 0px #1a1a1a; 
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-header-logo img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    contain: content;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+    border-radius: 10px;
+    contain: content;
+    overflow: hidden;
+    aspect-ratio: auto;
+}   
+
+.team-header-name{
+    width: 100%;
+    height: 100%;
+    max-height: 80px;
+    max-width: 222px;
+    color: #ffffffd1;
+    font-size: 40px;
+    font-weight: 700;
+    background-color: #00000063;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-action-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    grid-column-start: 1;
+    grid-column-end: 6;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.team-action-buttons button{
+    height: 65px;
+    width: 65px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    background-color: #000000d1;
+    border: 2px solid #ffffff29;
+    transition: all 0.2s ease-in-out;
+    overflow: hidden;
+    opacity: 0.8;
+
+
+    height: 65px;
+    width: 65px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    background-color: #1d1d1d;
+    border: 0px solid #1d1d1d;
+    transition: all 0.1s ease-in-out;
+    overflow: hidden;
+    opacity: 0.9;
+    
+    flex-grow: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+    -webkit-transform: scale(0.85);
+    transform: scale(0.85);
+}
+.team-action-buttons i{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 4px solid; */
+    /* border-radius: 37px; */
+    /* height: 100%; */
+    /* aspect-ratio: 1/1; */
+}
+
+.sponsor-button{
+    color: var(--team-sponsor);
+}
+.contact-button{
+    color: var(--team-contact);
+}
+.follow-button{
+    color: var(--team-follow);
+}
+.join-button{
+    color: var(--team-join);
+}
+.leave-button{
+    color: var(--team-leave);
+}
+.team-disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.button-footer{
+    font-size: 12px;
+    font-weight: 700;
+    bottom: -1px;
+    position: relative;
+    color: #ffffff;
+    width: 74px;
+    opacity: 0.6;
+    width: 111%;
+}
+
+.sponsor-button .button-footer{
+    background-color: var(--team-sponsor);
+}
+.contact-button .button-footer{
+    background-color: var(--team-contact);
+}
+.follow-button .button-footer{
+    background-color: var(--team-follow);
+}
+.join-button .button-footer{
+    background-color: var(--team-join);
+}
+.leave-button .button-footer{
+    background-color: var(--team-leave);
+}
+
+.team-action-buttons button:hover{
+    transform: scale(1);
+    box-shadow: 0 0 18px 0px #1a1a1a; 
+    opacity: 0.95;
+}
+.team-action-buttons button:hover .button-footer, .team-action-buttons button:active .button-footer{
+    opacity: 1;
+}
+.team-action-buttons button:active{
+    transform: scale(1.05);
+    box-shadow: 0 0 18px 0px #1a1a1a;
+    opacity: 1;
+}
+
+/* SELECT ROSTER */
+.select-roster-button{
+    width: 100%;
+    height: 100%;
+    width: 90%;
+    height: 90%;
+    max-height: 80px;
+    max-width: 222px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #ffffff47;
+    background-color: #181818d9;
+    border: 0px solid #ffffff00;
+    transition: all 0.2s ease-in-out;
+    overflow: hidden;
+}
+.roster-name{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* min-width: 100px; */
+    font-size: 11px;
+    padding-top: 20px;
+}
+.roster-name p{
+    margin-bottom: 0px;
+}
+.roster-name p:first-child{
+    font-size: 14px;
+    font-weight: 700;
+}
+.game-name{
+    font-size: 10px;
+    font-weight: 700;
+    color: #ffffff;
+    opacity: 0.6;
+    position: relative;
+    top: -25px;
+    background-color: #000000d1;
+    width: 100%;
+}
+.game-image{
+    width: 100px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-grow: 1;
+    z-index: 1;
+}
+.game-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+    opacity: 0.8;
+}
+.select-roster-button:hover .game-image img{
+    opacity: 1;
+}
+.select-roster-button:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 18px 0px #1a1a1a; 
+    opacity: 0.95;
+}
+.select-roster-button:active{
+    transform: scale(1.05);
+    box-shadow: 0 0 18px 0px #1a1a1a;
+    opacity: 1;
+}
+
+
+.no-roster-container{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+}
+/* SELECT ROSTER */
+
+.team-header-banner{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    /* Should float behind the header, covering 100% width and a "static" heigt maybe*/
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+    background-color: var(--gladiatorus-dark-grey-1);
+}
+
+.team-header-banner img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+}
+
+.team-header-logo{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 4;
+}
+.team-header-name{
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+.team-action-buttons{
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+/* .select-roster-button{
+    grid-column-start: 4;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 3;
+} */
+.select-roster-button{
+    grid-column-start: 5;
+    grid-column-end: 6;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+.no-roster-container{
+    grid-column-start: 3;
+    grid-column-end: 6;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+@media (max-width: 768px){
+    .team-header-logo{
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+    .team-header-name{
+        grid-column-start: 3;
+        grid-column-end: 6;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+    .team-action-buttons{
+        grid-column-start: 1;
+        grid-column-end: 6;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+    .select-roster-button{
+        grid-column-start: 3;
+        grid-column-end: 6;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+}
+
+
+
+.team-content-navtabs{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a1a1a;
+    position: relative;
+    z-index: 5;
+    height: 40px;
+    width: 100%;
+}
+.team-content-navtabs-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.team-content-navtabs-item a{
+    color: #c7c7c7;
+    background-color: var(--gladiatorus-medium-grey-weak);
+    /* background-color: red; */
+    height: 100%;
+    flex-grow: 1;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 14px;
+}
+.team-content-navtabs-item a:hover{
+    color: var(--gladiatorus-dark-grey-1);
+    background-color: #161616;
+    color: white;
+}
+.team-content-navtabs-item a:active{
+    color: var(--gladiatorus-dark-grey-1);
+    background-color: #161616;
+    color: white;
+}
+
+
+/*** GOING TO SCROLLED ***/
+
+
+
+/*** WHEN SCROLLED ***/
+.team-content-scrolled{
+    margin-top:110px;
+}
+.team-content-navtabs-scrolled{
+    position: fixed;
+    top: 70px;
+    contain: content;
+    width: 100%;
+    left: 0px;
+}
+.team-header-scrolled{
+    height: 100px;
+    height: 70px;
+    position: fixed;
+    top: 0px;
+    contain: content;
+    left: 0px;
+    width: 100%;
+}
+.team-header-scrolled .team-header-logo{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 4;
+}
+.team-header-scrolled .team-header-name{
+    opacity: 0;
+}
+.team-header-scrolled .team-action-buttons{
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 4;
+}
+.team-header-scrolled .team-action-buttons button{
+    height: 50px;
+    width: 50px;
+    height: 55px;
+    width: 55px;
+    margin: 0px;
+}
+.team-header-scrolled .select-roster-button{
+    grid-column-start: 5;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    contain: content;
+}
+.team-header-scrolled .game-image{
+    position: absolute;
+    flex-grow: 1;
+    z-index: 0;
+    opacity: 0.2;
+}
+.team-header-scrolled .roster-name{
+    font-size: 10px;
+    padding-top: 5px;
+    max-width: 100%;
+}
+/*** WHEN SCROLLED ***/

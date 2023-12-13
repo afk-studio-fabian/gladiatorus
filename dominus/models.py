@@ -7,18 +7,24 @@ class Organization(models.Model):
     logo = models.ImageField(upload_to='user-uploads/organizations/logos/', blank=True, null=True)
     founding_date = models.DateTimeField(auto_now_add=True)
     description = models.TextField(blank=True)
-    owner = models.OneToOneField(User, on_delete=models.CASCADE, related_name='owned_organization')
+    
 
+    creator = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="created_organizations", null=True, blank=True)
+    registrar = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="registered_organizations", null=True, blank=True)
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="owner_organization", null=True, blank=True)
+    
+    #owner = models.CharField(max_length=150)
+
+    #owner = models.OneToOneField(User, on_delete=models.CASCADE, related_name='owner_organization', default=1)
+    #creator = models.OneToOneField(User, on_delete=models.CASCADE, related_name='created_organization', default=1)
+    #registrar = models.OneToOneField(User, on_delete=models.CASCADE, related_name='registered_organization', default=1)
+    owners = models.ManyToManyField(User, related_name="owned_organizations", blank=True)
+
+    
+    def __str__(self):
+        return str(self.name) +" - " + str(self.owner)
     # ... other organization-specific details ...
 
-class Team(models.Model):
-    name = models.CharField(max_length=100)
-    members = models.ManyToManyField(Player, related_name='teams')
-    team_logo = models.ImageField(upload_to='user-uploads/teams/logos/', blank=True, null=True)
-    formation_date = models.DateTimeField(auto_now_add=True)
-    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, related_name='teams')
-
-    # ... other team-related details ...
 
 class TeamOwner(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='owner_profile')

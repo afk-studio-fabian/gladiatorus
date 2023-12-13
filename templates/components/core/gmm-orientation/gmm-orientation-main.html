@@ -1,13 +1,147 @@
 {% load static %}
 <h2 class="gmm-module-header"> Orientation</h2>
 <a href="{% url "users.orientation:set_orientation" %}" class="orientation-circular-menu">
-    {% if user.userorientation %}
-        <!-- Render the icon and banner of the selected orientation -->
-        <img src="{{ user.userorientation.orientation.icon.url }}" alt="{{ user.userorientation.orientation }}_icon" />
-        <div class="orientation-banner" style="background-image: url('{{ user.userorientation.orientation.banner_image.url }}');"></div>
+    {% if user.is_authenticated %}
+        {% if user.userorientation %}
+            <!-- Render the icon and banner of the selected orientation -->
+            <img id="orientation-icon" src="{{ user.userorientation.orientation.icon.url }}" alt="{{ user.userorientation.orientation }}_icon" />
+            <div id="orientation-banner" class="orientation-banner" style="background-image: url('{{ user.userorientation.orientation.banner_image.url }}');"></div>
+        {% else %}
+            <!-- Render the old image if no orientation is selected -->
+            <img src="{% static 'gladiatorus-base/img/Orientation_Menu_Example.png' %}" alt="rotation_temp_image"></img>
+        {% endif %}
     {% else %}
-        <!-- Render the old image if no orientation is selected -->
-        <img src="{% static 'gladiatorus-base/img/Orientation_Menu_Example.png' %}" alt="rotation_temp_image"></img>
+    <img src="{% static 'gladiatorus-base/img/Orientation_Menu_Example.png' %}" alt="rotation_temp_image"></img>
     {% endif %}
+    
     {% comment %} <h2>{{ user.userorientation.orientation|default:"No Orientation"}}</h2> {% endcomment %}
 </a>
+<h3 class="quick-orientations-header">Quick Orientation</h3>
+<div class="quick-orientations">
+    {% if user.is_authenticated %}
+        {% for orientation in user.profile.allowed_orientations.all %}
+            <div class="btn btn-outline-success" orientationid="{{ orientation.id }}">{{ orientation.name }}</div>
+        {% endfor %}
+    {% else %}
+        <div class="btn btn-outline-success" orientationid="1">Novice</div>
+    {% endif %}
+    
+</div>
+
+{% comment %} <a href="{% url "users.orientation:set_orientation" %}" class="orientation-circular-menu">
+    {% if user.is_authenticated %}
+        <!-- If the user is logged in, display their orientation -->
+        {% if user.userorientation %}
+            <img src="{{ user.userorientation.icon }}" alt="{{ user.userorientation.orientation }}_icon" />
+            <div class="orientation-banner" style="background-image: url('{{ user.userorientation.banner }}');"></div>
+            <h2>{{ user.userorientation.orientation }}</h2>
+        {% endif %}
+    {% else %}
+        <!-- If the user is not logged in, display the default orientation -->
+        <img src="{% static 'gladiatorus-base/img/default_orientation_icon.png' %}" alt="default_orientation_icon" />
+        <div class="orientation-banner" style="background-image: url('{% static 'gladiatorus-base/img/default_orientation_banner.png' %}');"></div>
+        <h2>Default</h2>
+    {% endif %}
+</a> {% endcomment %}
+<script>
+    {% comment %} document.addEventListener('DOMContentLoaded', function () {
+        const orientationMenu = document.querySelector('.orientation-circular-menu');
+        
+        orientationMenu.addEventListener('click', function (e) {
+            e.preventDefault();
+            // Assuming you have a way for the user to choose an orientation on the same page
+            const newOrientation = // get the new orientation chosen by the user;
+            
+            fetch('{% url "users.orientation:set_orientation" %}', {
+                method: 'POST',
+                body: JSON.stringify({
+                    orientation: newOrientation
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update the UI with the new orientation
+                // For example, change the icon, banner, and text
+            });
+        });
+    }); {% endcomment %}
+    
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const orientationItems = document.querySelectorAll('.quick-orientations .btn');
+    
+        orientationItems.forEach(item => {
+            item.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Get the new orientation chosen by the user from the "orientationid" attribute
+                const newOrientation = e.currentTarget.getAttribute('orientationid');
+                
+                fetch('{% url "users.orientation:set_orientation_view" %}', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        selected_orientation: newOrientation
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    //console.log(data);
+                    // Update the UI with the new orientation
+                    // For example, change the icon, banner, and text
+                    // Assuming you receive data in the format: {name: '...', iconUrl: '...', bannerUrl: '...'}
+                    //document.querySelector('.orientation-circular-menu h2').innerText = data.name;
+                    document.querySelector('#orientation-icon').src = data.iconUrl; // If you want to update the icon
+                    
+                    document.querySelector('#orientation-banner').style.backgroundImage = "url(" + data.bannerUrl + ")"; // If you want to update the icon
+                    // ... you can add more UI updates based on your needs
+                    on_orientation_change();
+                });
+            });
+        });
+    });
+
+    function on_orientation_change(){
+        update_gmm_core_template_from_server_side_renderer();
+    }   
+    function update_gmm_core_template_from_server_side_renderer(){
+        // Retrieve the updated core view
+        const renderer_url = '{% url "core:gmm_core_view" %}';
+        let current_gmm_core = document.getElementById("gmm-core");
+        let gmm_core_urls = document.getElementById("gmm-core-urls-container");
+
+        // Using Fetch API to make the request
+        fetch(renderer_url)
+        .then(response => {
+            // Check if response is okay
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            // Update the core urls with the new ones
+            let newContainer = document.createElement("div");
+            newContainer.innerHTML = data.trim(); // Using trim to eliminate any whitespace
+
+            // Extract the first child (the actual gmm-core-urls container) from the newContainer
+            let new_gmm_core_urls = newContainer.firstChild;
+
+            // Replace the old gmm_core_urls with the new one
+            gmm_core_urls.parentNode.replaceChild(new_gmm_core_urls, gmm_core_urls);
+        })
+        .catch(error => {
+            console.log("There was a problem with the fetch operation:", error.message);
+        });
+
+
+    }
+    
+</script>

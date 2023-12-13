@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load l10n %}
+{{ form.media }}
+<div class="form-container">
+    
+    <div class="form-header">
+        <h2>{{team.name}} [{{team.tag}}]</h2>
+    </div>
+
+    <div class="team-logo">
+        <img src="{{ team.logo.url }}" alt="{{ team.name }}">
+    </div>
+
+    <form method="POST" class="default-form" enctype="multipart/form-data">
+        {% csrf_token %}{% comment %} {{form.as_p}} {% endcomment %}
+        {% localize on %}
+        {% comment %} Change these to be the new {% endcomment %}
+        <p><strong>Formation Date:</strong> {{ team.formation_date }}</p>
+        <p><strong>Founding Date:</strong> {{ team.founding_date }}</p>
+        <p><strong>Organization:</strong> {{ team.organization }}</p>
+        <p><strong>Creator:</strong> {{ team.creator }}</p>
+        <p><strong>Registrar:</strong> {{ team.registrar }}</p>
+        <p><strong>Description:</strong> {{ team.description }}</p>
+        {% endlocalize %}
+        <input type="submit" value="Register" class="btn btn-outline-success" >
+    </form>
+    <div class="form-footer">
+        {% if previous_page %}<a class="btn btn-outline-dark" href="{{previous_page}}"><b>← </b></a>{% endif %}
+        <a class="btn btn-outline-dark" href="{% url 'users:dashboard' %}"><div>Dashboard</div></a>
+    </div>
+</div>
+{% endblock content %}
